@@ -1,0 +1,105 @@
+% Definicje
+%\RequirePackage{setspace}
+%\setstretch{1.3}
+% Komendy spolszczające
+\renewcommand{\succeq}{\succcurlyeq}
+\newcommand{\ds}{\ensuremath{\mathord{,}}}
+\newcommand{\nl}{\textcompwordmark}
+
+% Nagłówki i stopki
+\renewcommand{\ps@myheadings}{\let\@mkboth\@gobbletwo
+  \renewcommand{\@oddhead}{\vbox{\noindent%
+    \hbox{}{\small {\slshape Instytut Automatyki i~Informatyki Stosowanej
+    \hfill Raport \repno}}\break\smallskip\hrule}}
+  \renewcommand{\@oddfoot}{\hfill \thepage \hfill}
+  \renewcommand{\@evenhead}{\@oddhead}
+  \renewcommand{\@evenfoot}{\hfill \thepage \hfill}
+}
+
+% Kropki po numerach sekcji i podsekcji itd.
+\renewcommand*\@seccntformat[1]{\csname the#1\endcsname.\enspace}
+
+% Spis literatury
+\newenvironment{references}{%
+	\begin{list}{%
+	      % no default label
+	   }{%
+	      \setlength{\itemindent}{-\leftmargin}%
+	      \setlength{\itemsep}{0pt}%
+	}%
+   }{%
+  	\end{list}%
+}
+
+% Ok³adka
+\newcommand{\frontpage}{
+   \begin{titlepage}  
+    \vbox{%
+      \begin{minipage}{0.4\textwidth}
+				\begin{flushleft}
+					\noindent\begin{tabular}{c}
+	          \textsc{\large Politechnika Warszawska}\\
+			  		\textsc{Wydział Elektroniki i Technik Informacyjnych}\\
+	          \textsc{Instytut Automatyki i Informatyki Stosowanej}\\
+       	 \end{tabular}
+				\end{flushleft}
+      \end{minipage}%
+      \begin{minipage}{0.7\textwidth}%
+      	\begin{flushright}
+					\noindent\begin{tabular}{c}
+	          Rok akademicki \\
+	          \ownYear\\
+	        \end{tabular}
+				\end{flushright}
+      \end{minipage}%
+    }
+	\vskip 0.5cm%
+	\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.40\textwidth]{img/pw}
+	\end{figure}
+	\vskip 0.2cm%
+	\begin{center}
+		{\Large Praca Dyplomowa Magisterska}\\
+		\vskip 0.5cm%
+		{\Huge \@title}\\
+		\vskip 0.5cm%
+		{\Large \@author}
+	\end{center}
+	\vspace{10mm}
+	\begin{flushright}
+		\begin{tabular}{l}
+			Opiekun pracy\\
+			\large \supervisor
+		\end{tabular}
+	\end{flushright}
+	\vfill
+	\begin{tabular}{c}
+		\scriptsize Ocena \dotfill\\[10mm]
+		\scriptsize \makebox[55mm]{\dotfill}\\
+		\scriptsize Podpis Przewodnicz\k{a}cego\\
+		\scriptsize Komisji Egzaminu Dyplomowego
+	\end{tabular}
+	\end{titlepage}
+	\setcounter{footnote}{0}
+}
+\newcommand\makeabstracts{
+	\begin{titlepage}
+		\noindent
+		\begin{center}
+			\textbf{Streszczenie}\\[5mm]
+		\end{center}
+			\streszczenie\\[5mm]
+		\textbf{Słowa kluczowe:} \slowakluczowe\\[5mm]
+		\begin{minipage}{\textwidth}
+			
+		\end{minipage}
+		\begin{center}
+			\textbf{Abstract}\\[5mm]
+		\end{center}
+			\streszczenieen\\[5mm]
+		\textbf{Keywords:} \slowakluczoween\\
+		\vspace*{0pt}\vfill
+	\end{titlepage}
+}
+
