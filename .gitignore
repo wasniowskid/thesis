@@ -1,5 +1,6 @@
-praca.aux
-praca.dvi
-praca.pdf
-praca.log
-praca.toc
+*.aux
+*.dvi
+*.pdf
+*.log
+*.toc
+*.ps
