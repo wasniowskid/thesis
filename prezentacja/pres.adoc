@@ -7,7 +7,39 @@ Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat
 == Agenda
 
 * Internet Rzeczy
-* Bar
-* World
+* Platformy
+
+
+== Internet Rzeczy
+
+* Miliony urządzeń podłączonych do sieci
+* Jeszcze więcej danych
+
+== Platformy
+
+* MS Azure IoT Hub
+* Project Kaa
+
+== Analiza strumieniowa
+
+* Esper
+* Apache Spark
+* Apache Storm
+
+== Apache Storm
+
+Zalety
+
+* pierwsza
+* druga
+
+== Przykład
+
+Wykrywanie zmian z pomocą prawdopobieństwa Bayesa
+
+ang. Bayesian online change point detection
+
+== Co zostało
+
 
 == Dziękuje za uwagę
