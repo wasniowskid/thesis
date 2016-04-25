@@ -1,0 +1,13 @@
+= Analiza strumieniowa w Internecie Rzeczy
+Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat
+:revealjs_theme: white
+:revealjs_control: false
+:revealjs_slideNumber: true
+
+== Agenda
+
+* Internet Rzeczy
+* Bar
+* World
+
+== Dziękuje za uwagę
