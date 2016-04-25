@@ -4,6 +4,8 @@ Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat
 :revealjs_control: false
 :revealjs_slideNumber: true
 
+== Cel pracy
+
 == Agenda
 
 * Internet Rzeczy
