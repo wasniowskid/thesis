@@ -1,12 +1,33 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="author" content="Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat"><title>Analiza strumieniowa w Internecie Rzeczy</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section><h1>Analiza strumieniowa w Internecie Rzeczy</h1><p><small>Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat</small></p></section><section id="_agenda"><h2>Agenda</h2><div class="ulist"><ul><li><p>Internet Rzeczy</p></li><li><p>Platformy</p></li></ul></div></section>
-<section id="_internet_rzeczy"><h2>Internet Rzeczy</h2><div class="ulist"><ul><li><p>Miliony urządzeń podłączonych do sieci</p></li><li><p>Jeszcze więcej danych</p></li></ul></div></section>
-<section id="_platformy"><h2>Platformy</h2><div class="ulist"><ul><li><p>MS Azure IoT Hub</p></li><li><p>Project Kaa</p></li></ul></div></section>
-<section id="_analiza_strumieniowa"><h2>Analiza strumieniowa</h2><div class="ulist"><ul><li><p>Esper</p></li><li><p>Apache Spark</p></li><li><p>Apache Storm</p></li></ul></div></section>
-<section id="_apache_storm"><h2>Apache Storm</h2><div class="paragraph"><p>Zalety</p></div>
-<div class="ulist"><ul><li><p>pierwsza</p></li><li><p>druga</p></li></ul></div></section>
-<section id="_przykład"><h2>Przykład</h2><div class="paragraph"><p>Wykrywanie zmian z pomocą prawdopobieństwa Bayesa</p></div>
-<div class="paragraph"><p>ang. Bayesian online change point detection</p></div></section>
-<section id="_co_zostało"><h2>Co zostało</h2></section>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="author" content="Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat"><title>Analiza strumieniowa w Internecie Rzeczy</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section><h1>Analiza strumieniowa w Internecie Rzeczy</h1><p><small>Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat</small></p></section><section id="_cel_pracy"><h2>Cel pracy</h2></section>
+<section id="_agenda"><h2>Agenda</h2><div class="ulist"><ul><li><p>Internet Rzeczy</p></li><li><p>Platformy</p></li><li><p>Sytuacje nietypowe</p></li><li><p>Co zostało</p></li></ul></div></section>
+<section id="_internet_rzeczy"><h2>Internet Rzeczy</h2><div class="ulist"><ul><li><p>Miliony czujników, urządzeń podłączonych do sieci</p></li><li><p>Jeszcze więcej danych generowanych przez nie</p></li><li><p>Możliwość wcześniejszego ostrzegania o sytuacjach niebezpiecznych
+*</p></li></ul></div></section>
+<section id="_analiza_strumieniowa"><h2>Analiza strumieniowa</h2><div class="ulist"><div class="title">Platformy</div><ul><li><p>Esper</p></li><li><p>Apache Spark</p></li><li><p>Apache Storm</p></li></ul></div>
+<div class="paragraph"><p>Test: wykrywanie anomalii w obszarze telokomunikacji</p></div></section>
+<section id="_esper"><h2>Esper</h2><div class="ulist"><ul><li><p>Silnik obsługi zdarzeń.</p></li><li><p>Sql podobny język.</p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code class="sql language-sql">select
+  cs1.callingNum , cs1.switchNum,
+  cs2.callingNum , cs2.switchNum
+from
+  CallEvent.win:time(5 sec) as cs1, CallEvent.win:time(5 sec) as cs2
+where
+  cs1.callingImsi = cs2.callingImsi
+  and cs1.switchNum != cs2.switchNum</code></pre></div></div></section>
+<section><div class="ulist"><div class="title">Zalety</div><ul><li><p>Prosta instalacja i użytkowanie</p></li><li><p>Ekspresyjny język</p><div class="ulist"><ul><li><p>Operacje na pojedyńczych rekordach</p></li><li><p>Filtrowanie</p></li><li><p>Agregacja</p></li><li><p>Funkcje czasowe (window-sliding)</p></li></ul></div></li></ul></div>
+<div class="ulist"><div class="title">Wady</div><ul><li><p>Brak wsparcia skalowalności</p></li></ul></div></section>
+<section id="_apache_spark"><h2>Apache Spark</h2><div class="ulist"><div class="title">Zalety</div><ul><li><p>Liczne moduły</p></li><li><p>Wsparcie skalowalności</p></li></ul></div>
+<div class="ulist"><div class="title">Wady</div><ul><li><p>Skomplikowany sposób użytkowania</p></li><li><p>Analiza strumieniowa jest pobocznym modułem</p></li></ul></div></section>
+<section id="_apache_storm"><h2>Apache Storm</h2><div class="ulist"><div class="title">Zalety</div><ul><li><p>Analiza w czasie rzeczywistym</p></li><li><p>Wsparcie skalowalności</p></li></ul></div>
+<div class="ulist"><div class="title">Wady</div><ul><li><p>Wysoki próg wejścia</p></li><li><p>Brak wbudowanych modułów umożliwiających zaawansowane operacje</p></li></ul></div></section>
+<section id="_dlaczego_storm"><h2>Dlaczego Storm</h2><div class="ulist"><ul><li><p>Analiza w czasie rzeczywistym</p></li><li><p>Sposób reprezentacji zadania
+*</p></li></ul></div></section>
+<section id="_sytuacje_nietypowe"><h2>Sytuacje nietypowe</h2><div class="ulist"><ul><li><p>Zmiana charakterystyki</p><div class="ulist"><ul><li><p>Chwilowe</p></li><li><p>Permanentne</p></li></ul></div></li><li><p>Wartości odstające (outliers)</p></li><li><p>Inne</p></li></ul></div></section>
+<section><div class="paragraph"><p>Wykrywanie zmian z pomocą prawdopobieństwa Bayesa</p></div>
+<div class="paragraph"><p>ang. Bayesian online change point detection</p></div>
+<div class="ulist"><ul><li><p>Wykrywanie zmian charakterystyk w czasie</p></li><li><p>Możliwość wykorzystania dla różnych typów danych wejściowych</p></li></ul></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="before.png" alt="before"></div></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="after.png" alt="after"></div></div></section>
+<section id="_co_zostało"><h2>Co zostało</h2><div class="ulist"><ul><li><p>Wykrywanie zmian chwilowych</p></li></ul></div></section>
 <section id="_dziękuje_za_uwagę"><h2>Dziękuje za uwagę</h2></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
