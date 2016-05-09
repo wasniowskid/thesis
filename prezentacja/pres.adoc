@@ -86,7 +86,7 @@ where
 == Apache Storm
 
 .Zalety
-* Analiza w czasie rzeczywistym *
+* Analiza w czasie rzeczywistym
 * Wsparcie skalowalności
 
 .Wady
