@@ -1,10 +1,19 @@
 = Analiza strumieniowa w Internecie Rzeczy
-Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat
 :revealjs_theme: white
 :revealjs_control: false
 :revealjs_slideNumber: true
+:revealjs_history: true
+
+Dominik Waśniowski
+
+opiekun naukowy dr inż. Janusz Granat
 
 == Cel pracy
+
+Wykrywanie sytuacji nietypowych z wykorzystaniem technik analizy strumieniowej
+
+Test obecnych platform do analizy strumieniowej
+
 
 == Agenda
 
@@ -16,10 +25,13 @@ Dominik Waśniowski opiekun naukowy dr inż. Janusz Granat
 == Internet Rzeczy
 
 * Miliony czujników, urządzeń podłączonych do sieci
+* Możliwość wcześniejszego ostrzegania o sytuacjach niebezpiecznych
 * Jeszcze więcej danych generowanych przez nie
 
-* Możliwość wcześniejszego ostrzegania o sytuacjach niebezpiecznych
-*
+== Analiza strumieniowa
+
+* Dane napływają na bierząco, strumieniem
+* Dane przetwarzane niezależnie, bezpośrenio po otrzymaniu
 
 == Analiza strumieniowa
 
@@ -35,7 +47,7 @@ Test: wykrywanie anomalii w obszarze telokomunikacji
 * Silnik obsługi zdarzeń.
 * Sql podobny język.
 
-[source,sql]
+[source, language="sql"]
 ----
 select
   cs1.callingNum , cs1.switchNum,
@@ -47,9 +59,8 @@ where
   and cs1.switchNum != cs2.switchNum
 ----
 
-== !
+== Esper - zalety
 
-.Zalety
 * Prosta instalacja i użytkowanie
 * Ekspresyjny język
 ** Operacje na pojedyńczych rekordach
@@ -57,18 +68,20 @@ where
 ** Agregacja
 ** Funkcje czasowe (window-sliding)
 
-.Wady
+== Esper - wady
+
 * Brak wsparcia skalowalności
+* Dane trzymane w pamięci
 
 == Apache Spark
 
 .Zalety
-* Liczne moduły
 * Wsparcie skalowalności
+* Liczne moduły
 
 .Wady
-* Skomplikowany sposób użytkowania
 * Analiza strumieniowa jest pobocznym modułem
+* Skomplikowany sposób użytkowania
 
 == Apache Storm
 
@@ -83,8 +96,10 @@ where
 == Dlaczego Storm
 
 * Analiza w czasie rzeczywistym
+* Skalowalność
 * Sposób reprezentacji zadania
-*
+
+image::storm-topology1.png[]
 
 == Sytuacje nietypowe
 
@@ -96,23 +111,40 @@ where
 
 == Wykrywanie zmian
 
-Wykrywanie zmian z pomocą prawdopobieństwa Bayesa
+* Wykrywanie zmian charakterystyk w czasie
+* Zmiany parametrów definiujących rozkład
 
+image::test.png[]
+
+== Wykrywanie zmian
+
+Wykrywanie zmian z pomocą prawdopobieństwa Bayesa
 ang. Bayesian online change point detection
 
-* Wykrywanie zmian charakterystyk w czasie
 * Możliwość wykorzystania dla różnych typów danych wejściowych
+* Konieczność pamiętania wartości wyłącznie od ostatniej zmiany
 
-== !
+== Algorytm Bayesa
+
+* Przebiegi, dane zebrane od teraz do poprzedniej zmiany
+* Znamy wcześniejszy rozkład próbek
+* Nowa wartość należy do akualnego przebiegu, bądź nastąpiła zmiana
+
+== Funkcja przebiegu w czasie
+
+image::run.png[]
+
+== Przykład - dane wejściowe
 
 image::before.png[]
 
-== !
+== Wynik
 
 image::after.png[]
 
 == Co zostało
 
-* Wykrywanie zmian chwilowych
+* Opracowanie własnej metody wykrywania sytuacji nietypowej
+* Testy
 
 == Dziękuje za uwagę
