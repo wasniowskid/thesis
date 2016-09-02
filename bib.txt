@@ -1,1 +1,3 @@
 http://www.gartner.com/newsroom/id/3165317 gartner 2015
+
+http://blogs.gartner.com/doug-laney/files/2012/01/ad949-3D-Data-Management-Controlling-Data-Volume-Velocity-and-Variety.pdf gartner 2012
