@@ -1,12 +1,57 @@
 \subsection{Esper}
-Esper jest silnikiem umożliwiającym złożoną analizę zdarzeń (ang. \textit{Complex Event Processing, CEP}).
-Możliwość wbudowania w dowolną aplikację javy bądź .net.
+Esper firmy EsperTech Inc. jest silnikiem umożliwiającym złożoną analizę zdarzeń
+(\textit{Complex Event Processing, CEP}).
+możliwym do osadzenia w dowolnej aplikcji Java lub .Net.
+Esper dzięki swojemu bardzo ekspresywnemu językowi umożliwia na swobodne manipulowanie strumieniami danych.
 
-Zalety:
-\begin{itemize}
-  \item język zbliżony do sql,
-  \item prosta instalacja.
-\end{itemize}
+Język Esper to specjalnie przygotowany język domenowy (\textit{domain specific language, DSL}) do obsługi zdarzeń.
+Język ma formę zapytań (kwerend) i został oparty na \textit{SQL}.
 
-Wady:
-brak wbudowanych mechanizmów zwiększających skalowalność.
+\begin{lstlisting}[captionpos=b, caption=Przykładowe zapytanie w języku Esper]
+  select * from StockTickEvent(symbol='IBM').win:length(100)
+\end{lstlisting}
+
+Niewątpliwie jedną z głównych zalet Espera jest jego prostota instalacji.
+Wystarczy dołączyć bibliotekę,
+która jest w formie pojedyńczego pliku \textit{jar}
+do aplikacji i rozwiązanie jest gotowe do użytku.
+Kolejną zaletą jest język dający szerokie pole do działania.
+Dzięki oparciu go o klasyczny \textit{SQL} język ten jest zrozumiały dla osób dopiero rozpoczynających naukę,
+jak i dla osób bez podstaw informatycznych.
+Dostępne funkcje to:
+filtrowanie wyników
+\begin{lstlisting}
+  select * from
+    StockTickEvent
+  where symbol='IBM'
+\end{lstlisting}
+funkcje agregujace
+\begin{lstlisting}
+  select symbol, avg(value) as value from
+    StockTickEvent
+  group by symbol
+\end{lstlisting}
+funkcje grupujące (\textit{window functions})
+\begin{lstlisting}
+  select * from
+    StockTickEvent.win:length(100)
+\end{lstlisting}
+łączenie strumieni
+\begin{lstlisting}
+  select * from
+    TickEvent.std:unique(symbol) as t,
+    NewsEvent.std:unique(symbol) as n
+  where t.symbol = n.symbol
+\end{lstlisting}
+tworzenie nowych strumieni
+\begin{lstlisting}
+  insert into IbmStockTickEvent
+  select * from
+    StockTickEvent
+  where symbol='IBM'
+\end{lstlisting}
+
+Niestety to co okazało się zaletą Espera czyli prostota instalacji
+jest także jego wadą.
+Esper nie ma żadnych wbudowanych mechanizmów ułatwiających skalowanie,
+tj. jest tak samo skalowalny jak aplikacja w której został osadzony.
