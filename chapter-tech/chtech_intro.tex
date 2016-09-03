@@ -81,6 +81,28 @@ Po wykonaniu wszystkich obliczeń następuje etap agregowania (faza \textbf{Redu
 Zyski z takiego podejścia najlepiej są widoczne w środowisku rozproszonym (wiele maszyn, procesów i wątków),
 gdzie dzięki dekompozycji zadania wzrastają możliwości skalowania.
 
+Przykłady
+koszyk w supermarkecie
+
 \subsection{Przetwarzanie strumieniowe}
 
-% wymagania, co raz szybciej rezultaty
+Wymagania użytkowników co do czasu otrzymania wyniku
+oraz pewna klasa problemów charakteryzyjąca się dużą szybkością napływania danych powodują,
+że metody przetwarzania wsadowego nie znajdują zastosowania.
+Podejście strumieniowe polega na analizie danych bezpośrednio po ich pojawieniu się.
+Nie jest instotny sposób w jaki dane się pojawiają,
+ale fakt,
+że są procesowane natychmiast po pojawieniu się.
+Mechanizmy analizy strumieniowej można podzielić na 2 typy z uwagi na sposób przetwarzania:
+\begin{itemize}
+	\item \textbf{Niezależne}.
+	Każdy nowy element (zdarzenie) jest przetwarzany pojedyńczo i niezależnie od innych.
+	Po wykonaniu operacji przekazywany jest do nowego strumienia bądź umieszczany w strumieniu wyjściowym.
+	\item \textbf{Buforowane}.
+	Elementy napływające ze strumienia przetrzymywane są przez zdefiniowany okres czasu
+	bądź czekają na zebranie wystarczającej liczby elementów.
+	Po spełnieniu wymaganego warunku są procesowane
+	i tak jak w przypadku procesowania niezależnego	przekazywanie dalej albo na wyjście.
+\end{itemize}
+
+Przykład
