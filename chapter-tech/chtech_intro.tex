@@ -1,5 +1,5 @@
 \section{Przetwarzanie danych}
-
+\subsection{Big Data}
 Lawinowo rosnąca liczba nowych urządzeń podłączanych do sieci
 oraz wzrost tempa generowania danych przez nie spodowało,
 że konieczne się stało stworzenie nowych metod ich analizy.
@@ -50,11 +50,35 @@ przetwarzanie wsadowe \textit{batch processing}
 oraz przetwarzanie strumieniowe \textit{stream processing}.
 
 \subsection{Przetwarznie wsadowe}
+Przetwarzanie wsadowe jest jednym z najstarszych ze sposobów przetwarzania danych.
+Zadanie jest dzielone na serię następujących po sobie operacji (rys. \ref{fig:BatchProcessing}).
+Najczęściej wynik jednej z operacji jest przekazywany na wejście kolejnej.
 
-Architektura Map Reduce
 \begin{figure}[htbp]
 \centering
-	\includegraphics[width=0.8\textwidth]{img/mr}
+	\includegraphics[width=1\textwidth]{img/batch}
+	\caption{Procesowanie wsadowe}
+  \label{fig:BatchProcessing}
 \end{figure}
+Takie podejście jest bardzo wygodne z punktu widzenia użytkowania,
+po zdefiniowaniu wszystkich operacji oraz dostarczeniu danych wejściowych
+proces nie wymaga żadnych dodatkowych czynności ze strony użytkownia.
+Dodatkowo z uwagi na swój jednorazowy charakter wiadomo także czy operacje się udały czy nie.
+
+Najpowszechniejszą architekturą wykorzystywaną w przetwarzaniu wsadowym jest \textit{Map Reduce}.
+Schemat rozwiązania przedstawiono na rysunku \ref{fig:MapReduce}.
+\begin{figure}[htbp]
+\centering
+	\includegraphics[width=0.9\textwidth]{img/mr}
+	\caption{Model architektury rozwiązania \textit{Map Reduce}}
+  \label{fig:MapReduce}
+\end{figure}
+Dane dzielone są na wiele,
+niezależnych od siebie zbiorów,
+na których wykonywane są różnego rodzaju przekształecenia,
+operacje (faza \textbf{Map}).
+Po wykonaniu wszystkich obliczeń następuje etap agregowania (faza \textbf{Reduce}) otrzymanych wyników.
+Zyski z takiego podejścia najlepiej są widoczne w środowisku rozproszonym (wiele maszyn, procesów i wątków),
+gdzie dzięki dekompozycji zadania wzrastają możliwości skalowania.
 
 \subsection{Przetwarzanie strumieniowe}
