@@ -1,13 +1,62 @@
 \section{Podsumowanie}
+
+Wszystkie opisane frameworki służą do obsługi procesowania strumieniowego.
+Mimo że służą do podobnych zastosowań,
+pomiędzy nimi istnieją zasadnicze różnice.
+Zarówno w obsłudze danych,
+jak i w podejściu do samego procesowania.
+
+\subsubsection*{Sposób procesowania, opóźnienia, skalowalność}
+Największą różnicą pomiędzy omawianymi platformami jest tryb w jakim procesowane są zdarzenia.
+Spark buforuje (zbiera) napływające dane w zadanym interwale czasu i dopiero potem procesuje,
+natomiast procesuje dane bezpośrednio po ich otrzymaniu.
+Esper dzięki swoim wbudowanym mechanizmom może pracować w obydwu trybach.
+
+Różne tryby procesowania mają swoje konsekwencje w opóźnieniach (\textit{latency}).
+Spark z uwagi na występowanie okien czasowych ma je zauważalne,
+z kolei Storm przetwarzający dane od razu ma opóźnienia praktycznie pomijalnie małe.
+
+Sposób procesowania ma także wpływ na gwarancje jakie oferują frameworki.
+Ponieważ Spark nie musi pilnować pojedyńczo danych,
+tylko mini-batche może zagwarantować,
+że dane zdarzenie przeprocesuje się dokładnie raz (\textit{exacly once}).
+Storm natomiast śledzi wszystkie rekordy indywidualnie jak poruszają się przez system,
+dlatego jedyne gwarancje jakie daje,
+to że dane zostaną przeprocesowane co najmniej raz (\textit{at least once}).
+Powoduje to, że mogą pojawić się duplikaty - niektóre rekordy mogą być przeprocesowane więcej niż jeden raz,
+na przykład podczas awarii węzła.
+Esper natomiast jest tylko silnikiem osadzanym wewnątrz innych aplikacji,
+nie ma wbudowanych mechanizmów zarządzania klastrami,
+dlatego problem zachowania gwarancji nie istnieje.
 \begin{table}[h]
-  \caption{Porównanie platform}
-  \label{stream-summary-table}
-  \begin{tabular}{l l l l}
-     & Esper & Spark & Storm \\
+  \label{tab:ModelComparison}
+  \begin{tabular}{p{0.2\linewidth} p{0.25\linewidth} p{0.25\linewidth} p{0.25\linewidth}}
+    & Esper & Spark & Storm \\
     \hline
-    Typ & silnik CEP & ogólnego przeznaczenia & ogólnego przeznaczenia \\
-    Analiza strumieniowa w czasie rzeczywistym & tak & nie & tak \\
-    Skalowalność & nie & tak & tak \\
-    Języki & jvm, .Net & jvm, python, R & wiele \\
+    typ & silnik CEP & ogólny & ogólny \\
+    model & obydwa & buforowanie & niezależne \\
+    gwarancje & co najwyżej raz & co najwyżej raz & co najmniej raz \\
+    skalowalność & nie & tak & tak \\
   \end{tabular}
+  \caption{Porównanie platform}
+\end{table}
+
+\subsubsection*{Implementacja, API programistyczne}
+Storm w większości został napisany w języku Clojure.
+API programistyczne jest przygotowane dla javy,
+jednak można wykorzystywać je we wszystkich językach wykorzystujących wirtualną maszynę (\textit{jvm}).
+Dodatkowo elementy Storma może wykonywać skrypty napisane w innych językach: python, R, etc.
+Spark został napisany w scali,
+posiada przygotowane API w javie, scali i R.
+Esper powstał w języku java, chociaż posiada port napisany w języku C\#.
+Do wykonywania operacji na danych wykorzystuje własny język oparty na SQL.
+\begin{table}[h]
+  \label{tab:ProgrammingApi}
+  \begin{tabular}{p{0.2\linewidth} p{0.25\linewidth} p{0.25\linewidth} p{0.25\linewidth}}
+    & Esper & Spark & Storm \\
+    \hline
+    napisany w & java & scala & clojure \\
+    api & \textit{DSL} oparty na SQL & jvm, python, R & wiele \\
+  \end{tabular}
+  \caption{Porównanie platform - API}
 \end{table}
