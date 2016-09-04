@@ -1,24 +1,71 @@
 \subsection{Apache Spark}
-Apache Spark jest narzędziem mającym swoje początki na uniwersytecie Berkley.
-Jest to ogólnego przeznaczenia framework do zadań obliczeniowych,
-charakteryzujący się dobrymi właściwościa skalowania.
+Spark jest ogólnego przeznaczenia narzędziem umożliwiającym procesowania
+i analizę dużych ilości danych.
 Wykorzystywany jest z powodzeniem w operacjach związanych z:
 \begin{itemize}
   \item uczeniem maszynowym,
-  \item klasteryzacją dużej ilości danych,
+  \item analizą skupień dużej ilości danych,
   \item analizą strumieniową.
 \end{itemize}
-
-% napisany w scali
-
-Jednym z ciekawych elementów tego frameworka
-jest możliwość korzystania z jego API w innych językach niż tylko z rodziny jvm (\textit{Java Virtual Machine}).
-Oprócz scali czy javy dostepne są:
+Apache Spark charakteryzuje się:
 \begin{itemize}
-  \item python
-  \item R
+  \item \textbf{Łatwością w korzystaniu}.
+  Dostarczony model programistyczny skrzętnie ukrywa szczególy implementacyjne związane z procesowaniem rozproszonym.
+  Dzięki temu programista może skupić się tylko na zadaniu.
+  Dodatkowo dzięki wykorzystaniu popularnych języków (java, scala) próg wejścia jest relatywni niski,
+  a programy wykorzystywane przez Sparka są rozumiane nawet przez osoby nie związane.
+  \item \textbf{Ogólnym przeznaczeniem}.
+  Spark jest zintegrowaną platformą pozwalającą wykonywać wiele różnych prac.
+  Z powodzeniem można tworzyć zadania przetwarzania wsadowego,
+  interaktywne analizy czy wykorzystywać mechanizmy uczenia maszynowego.
+  \item \textbf{Skalowalnością}.
+  Spark dostarcza od razu mechanizmy umożliwiąjące skalowanie horyzontalne.
+  Wystarczy dołączyć nową maszynę do klastra.
+  Mechanizym skalowania włączone są automatycznie,
+  tzn. nie trzeba żadnych zmian w kodzie by mięć działający klaster.
+  \item \textbf{Odpornością na awarie}.
+  Spark sam automatycznie zarządza wszystkimi węzłami w klastrze
+  i w razie awarii jest w stanie zareagować.
 \end{itemize}
 
-% moduly
-% jak dziala
-% zalety
+Oprócz standardowych mechanizmów Spark dostarcza zestaw dodatkowych funkcjonalności
+w wydzielonych modułach (rys. \ref{fig:SparkModules}).
+Są to operacje grafowe (GraphX), operacje SQL (Spark SQL), uczenie maszynowe (MLlib)
+i procesowanie strumieniowe (Spark Streaming).
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{img/sparkModules}
+  \caption{Moduły Spark}
+  \label{fig:SparkModules}
+\end{figure}
+\subsubsection*{Spark SQL}
+Moduł dodający możliwość operowania na danych wykorzystywanych przez Sparka za pomocą języka SQL.
+Pochodzenie danych nie ma znaczenia. Mogą być umieszone w
+relacyjnych bazach danych, NoSQL, JSON, CSV czy innych ustrukutoryzowanych formatach.
+Szczegóły implementacyjne są skutecznie ukrywane.
+
+Spark SQL można bezproblemowo wykorzystywać razem z innymi modułami (Spark Streaming, Spark ML czy GraphX).
+Może być wykorzystywany zarówno w przetwarzniu wstadowym historycznych danych
+czy analizie strumieniowej w czasie rzeczywistym.
+\subsubsection*{Spark GraphX}
+Grapx dostarcza struktury danych umożliwiające na reprezentacje danych w fomie grafów
+zarówno sterowanych jak i niesterowanych.
+Dodatkowo w tym module znajdują się przygotowana operatory i algorytmy umożliwiające prace z grafami.
+\subsubsection*{Spark MLlib}
+MLlib rozszerza Spark o dodatkowe funkcjonalności związane z uczeniem maszynowym (\textit{machine learning})
+i analizą statystyczną.
+Moduł ten zawiera wiele zaimplementowanych algorytmów między innymi do:
+\begin{itemize}
+  \item regresji liniowej (\textit{linear regression}),
+  \item klasyfikatory Bayesa (\textit{Naive Bayes}),
+  \item algorytmy do analizy skupień (\textit{cluster analysis}),
+\end{itemize}
+i wiele innych.
+\subsubsection*{Spark Streaming}
+Moduł Spark Streaming roszerza podstawowe funkcjonalności o przetwarzanie strumieniowe danych.
+Ponieważ pod spodem wykorzystywany jest Spark gotowe rozwiązania także charakteryzyją się wysoką skalowalnością
+i odpornością na awarie.
+Spark Streaming przetwarza dane poprzez buforowanie.
+Strumień dzielony jest na mini-wsady o konfigurowanym rozmiarze,
+które dalej procesowane są już normalnie.
+Na tak przygotowanych danych dostępne są już wszystkie operacje oferowane przez Sparka.
