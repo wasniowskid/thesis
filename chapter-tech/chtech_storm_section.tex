@@ -1,5 +1,5 @@
 \subsection{Apache Storm}
-Apache Storm jest framworkiem umożliwiającym strumieniowe przetwarzanie danych w czasie rzeczywistym.
+Apache Storm jest frameworkiem umożliwiającym strumieniowe przetwarzanie danych w czasie rzeczywistym.
 Charakteryzuje się przy tym:
 \begin{itemize}
   \item skalowalnością,
@@ -7,30 +7,106 @@ Charakteryzuje się przy tym:
   \item niezawodnością.
 \end{itemize}
 Stworzony został przez inżynierów z firmy
-Backtype \footnote{\url{https://en.wikipedia.org/wiki/BackType}},
-a po jej przejęciu, rozwijany przez inżynierów Twittera \footnote{\url{https://en.wikipedia.org/wiki/Twitter}}.
-Obecnie projekt jest nadzworowany przez fundację Apache \footnote{\url{https://en.wikipedia.org/wiki/Apache_Software_Foundation}}.
+Backtype (Marz, 2014),
+a po jej przejęciu, rozwijany przez inżynierów Twittera.
+Obecnie projekt został otwarty publicznie dla społeczności \textit{open-source}
+i jest nadzworowany przez fundację Apache.
 
-Podobnie jak w przypadku Apache Storm zadanie jest odseparowane od wszelkich kwestii technicznych.
-
-Centralnym punktem jest topologia (ang. \textit{topology}),
-która reprezentuje zadanie w formie acyklicznego grafu skierowanego.
-Graf ten ma 2 rodzaje węzłów.
-\begin{itemize}
-  \item \textit{Spouts} są źródłem danych w topologii.
-  Pobierają je z zewnętrznego źródła i wprowadzają wewnątrz.
-  \item \textit{Bolts} są miejscem,
-  w którym następuje procesowanie danych: modyfikacja, filtracja czy agregacja.
-\end{itemize}
-Pomiędzy węzłami poruszają się krotki (ang. \textit{tuples}),
-które są kontenerami na dane wyprodukawane przez węzły.
-% budowa rysunek
+\subsubsection*{Elementy składowe Storm}
+\label{subs:StormElemets}
+W przypadku Storma reprezentacja zadania nazywana jest topologią (\textit{topology}).
+Jest to acykliczny graf skierowany (rys. \ref{fig:StormTopology}).
+Elementami grafu są strumienie danych,
+elementy tworzące strumień (\textit{spouts})
+i elementy operacyjne (\textit{bolts}).
+Topologie Storm koncepcyjnie zbliżone są do zadań z przetwarzania wsadowego.
+Różnią się tym,
+że gdy zadania wsadowe mają jasno określone momenty startu i końca,
+to topologię działają nieprzerwanie, do czasu gdy zostaną jawnie zatrzymane.
 \begin{figure}[htbp]
-\centering
-	\includegraphics[width=1\textwidth]{img/storm}
-	\caption{Topologia rozwiązania Apache Storm}
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/storm}
+  \caption{Topologia Storm}
   \label{fig:StormTopology}
 \end{figure}
-% at least once
-należy być przygotowanym,
-że wiadomość może zostać przetworzona więcej niż jeden raz
+
+\subsubsection*{Strumienie}
+Podstawową strukturą danych w systemach Storm jest krotka (\textit{tuple}).
+Krotka jest zbiorem par klucz-wartość przepływających pomiędzy elementami topologi.
+Krotka w połączeniu z innymi krotkami tworzy strumień danych.
+\subsubsection*{Spouts}
+\textit{Spouts} reprezentują punkty wejścia krotek do topologi Storm.
+Strumienie mają właśnie swój początek w elementach typu \textit{spouts}.
+Przykładowo mogą to być:
+\begin{itemize}
+  \item dane z sensorów, czujników,
+  \item informacje z serwisów społecznościowych,
+  \item logi aplikacyjne.
+\end{itemize}
+\subsubsection*{Bolts}
+\textit{Bolts} są elementami w topologiach,
+w których wykonywana jest właściwa praca na danych.
+Mogą przyjmować na wejście dowolną liczbę strumieni,
+przeprosować jest
+i jeśli zajdzie taka potrzeba stworzyć nowe strumienie.
+\textit{Bolts} mogą podłączać się do strumieni generowanych przez \textit{spouts},
+jak i do innych \textit{bolts}.
+Dzięki temu można tworzyć skomplikowane struktury przepływów strumieni danych.
+Typowymi zastosowaniami \textit{bolts} są:
+\begin{itemize}
+  \item filtrowanie,
+  \item preprocesowanie danych (oczyszczanie, standaryzowanie formatów),
+  \item operacje biznesowe,
+  \item zapisy w bazach danych.
+\end{itemize}
+
+\subsubsection*{Mechanizmy procesowania rozproszonego}
+Storm od początku projektowany był z myślą o procesowaniu rozproszonym,
+pozwalającym na łatwe skalowanie horyzontalne.
+Zadania dzielone są na wiele niezależnych od siebie podzadań,
+które mogą być uruchamiane równolegle na wielu maszynach na raz.
+
+Elementy ułatwiające realizację wymagań można podzielić na cztery główne grupy.
+\begin{enumerate}
+  \item Węzły (\textit{nodes}) są pojedyńczymi maszynami podłączonymi do klastra Storm,
+  na których wykonywane są topologie.
+  \item Procesy (\textit{workers}) są fizyczne procesy uruchniane na węzłach.
+  Na jednym węźle może być uruchomionych więcej niż jeden proces.
+  \item Wątki (\textit{executors}) są to standardowe wątki uruchomiana wewnątrz procesów.
+  \item Zadania (\textit{tasks}) są instancjami obiektów typu \textit{stouts} i \textit{bolts}.
+  Operacje są wywoływane przez wątki.
+\end{enumerate}
+Zależności elementów pomiędzy sobą przedstawiono na rysunku \ref{fig:StormParallel}.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/stormElements}
+  \caption{Elementy tworzące topologię Storm}
+  \label{fig:StormParallel}
+\end{figure}
+
+\subsubsection*{Zarządzanie klastrem}
+Klaster Storma wykorzystuje klasyczne podejście \textit{master}/\textit{slave}
+jednak w troche innym znaczeniu.
+W architekturze typu \textit{master}/\textit{slave} najcześciej jest jeden węzeł nadrzędny (\textit{master}),
+który jest wcześniej zapisany w konfiguracji
+bądź jest wybierany dynamicznie po starcie.
+W przypadku Storma zostało zastosowane drugie podejście.
+Klaster Storma (rys. \ref{fig:StormCluster}) składa się z jednego węzła \textit{master} nazywanego \textit{nimbus}
+i jednego bądź więcej węzłów pomocniczych nazywanych zarządcami (\textit{supervisors})
+Dodatkowo do koordynacji komunikacji pomiędzy nimbusem,
+a zarządcami wykorystywany jest Apache ZooKeeper.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/stormCluster}
+  \caption{Elementry klastra Storm}
+  \label{fig:StormCluster}
+\end{figure}
+
+Węzeł \textit{nimbus} jest odpowiedzialny za zarządzanie,
+koordynowanie i monitorowania wszystkich topologi pracujących w klastrze.
+Dodatkowo zajmuje się także przydziałem zadań dla krotek
+oraz pilmowaniem by wszystkie zadania zostały wykonane.
+W przypadku awiari \textit{nimbus} uruchamia ponownie zadanie w innym miejscu klastra.
+Węzeł zarządzający odpowiedzialny jest za przydział zadań otrzymanych z \textit{nimbusa}.
+Tworzy nowy procesy (\textit{workers}) w ramach węzła,
+przydziele do nich zadania.
