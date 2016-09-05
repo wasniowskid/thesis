@@ -1,7 +1,7 @@
 \section{ADWIN}
 \label{sec:ADWIN}
 ADWIN należy do grupy algorytmów opartych na koncepcji przesuwnego okna (\textit{sliding window}).
-Okno jest zbiorem badanych rekordów o najczęsciej jawnie wcześniej zdefiniowanym rozmiarze (rys. \ref{fig:SlidingWindowInit})
+Okno jest zbiorem badanych rekordów o najczęściej jawnie wcześniej zdefiniowanym rozmiarze (rys. \ref{fig:SlidingWindowInit})
 do którego wkładane są najnowsze próbki, starsze natomiast są usuwane (rys. \ref{fig:SlidingWindowMove}).
 \begin{figure}[htbp]
 \centering
@@ -18,7 +18,7 @@ do którego wkładane są najnowsze próbki, starsze natomiast są usuwane (rys.
 Na podstawie zawartości okna algorytmy mogą:
 \begin{itemize}
   \item sprawdzić czy nie zaszła zmiana,
-  \item przebudować, zaaktualizować model.
+  \item przebudować, zaktualizować model.
 \end{itemize}
 Dlatego wielkość okna ma znaczenie.
 Im jest dłuższe tym algorytmy zachowują się stabilniej w spokojnych okresach,
@@ -28,7 +28,7 @@ Algorytm ADWIN (\textit{ADaptive WINdow}) zaproponowany przez Bifeta (Bifet i in
 wykorzystuje okno, jednak jego rozmiar jest dynamiczny,
 tj. nie ma ustalonego wymiaru i zmienia się w czasie, w zależności od procesowanych danych.
 
-Głownym elementem algorytmu jest przesuwne okno $W$,
+Głównym elementem algorytmu jest przesuwne okno $W$,
 którego zawartością są aktualne rekordy $x_{i}$.
 W raz z pojawieniem się nowych próbek wewnątrz okna
 sprawdzane jest czy wszystkie dostatecznie duże pod-okna nie różnią się względem siebie za bardzo.

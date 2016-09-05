@@ -1,7 +1,7 @@
 \section{Przetwarzanie danych}
 \subsection{Big Data}
 Lawinowo rosnąca liczba nowych urządzeń podłączanych do sieci
-oraz wzrost tempa generowania danych przez nie spodowało,
+oraz wzrost tempa generowania danych przez nie spowodowało,
 że konieczne się stało stworzenie nowych metod ich analizy.
 Klasyczne metody polegające na tworzeniu coraz większych,
 mocniejszych komputerów (\textit{vertical scaling})
@@ -22,7 +22,7 @@ Dane \textit{Big Data} można w skrócie opisać modelem \textit{3V} (Gartner In
 		\item \textbf{Volume} - ilość,
 		której nie można przetworzyć z wykorzystaniem standardowych metod i narzędzi.
 		\item \textbf{Velocity} - zmienność.
-		Dane napływają z różną czestotliwością (natężeniem),
+		Dane napływają z różną częstotliwością (natężeniem),
 		często w tym samym momencie.
 		\item \textbf{Variety} - różnorodność.
 		Dane pochodzą pochodzą z wielu źródeł.
@@ -34,15 +34,15 @@ Dane \textit{Big Data} można w skrócie opisać modelem \textit{3V} (Gartner In
 
 Obecnie rozwiązania \textit{Big Data} są coraz chętniej wykorzystywane przez firmy.
 Począwszy od branży e-commerce,
-gdzie są wykorzystywane między innymi do analizy behawioralnej klienta czy prognowania zachowań,
+gdzie są wykorzystywane między innymi do analizy behawioralnej klienta czy prognozowania zachowań,
 do nawet bezpieczeństwa narodowego
 na przykład NSA i program typowania terrorystów.
 
 Główną cechą mechanizmów analizy \textit{Big Data} jest podział zadania
 na wiele mniejszych,
-niezależnych od siebie podzadań,
+niezależnych od siebie pod-zadań,
 które mogą wykonywać się równolegle.
-Dzięki dekompozycji zadania na niezależne podzadania,
+Dzięki dekompozycji zadania na niezależne pod-zadania,
 można niskim kosztem zwiększać wydajność (\textit{throughput})
 czy odporność na awarie (\textit{fault-tolerance}) rozwiązania.
 Najpopularniejszymi metodami stosowanymi w analizie \textit{Big Data} to
@@ -62,7 +62,7 @@ Najczęściej wynik jednej z operacji jest przekazywany na wejście kolejnej.
 \end{figure}
 Takie podejście jest bardzo wygodne z punktu widzenia użytkowania,
 po zdefiniowaniu wszystkich operacji oraz dostarczeniu danych wejściowych
-proces nie wymaga żadnych dodatkowych czynności ze strony użytkownia.
+proces nie wymaga żadnych dodatkowych czynności ze strony użytkownika.
 Dodatkowo z uwagi na swój jednorazowy charakter wiadomo także czy operacje się udały czy nie.
 
 Najpowszechniejszą architekturą wykorzystywaną w przetwarzaniu wsadowym jest \textit{Map Reduce}.
@@ -75,7 +75,7 @@ Schemat rozwiązania przedstawiono na rysunku \ref{fig:MapReduce}.
 \end{figure}
 Dane dzielone są na wiele,
 niezależnych od siebie zbiorów,
-na których wykonywane są różnego rodzaju przekształecenia,
+na których wykonywane są różnego rodzaju przekształcenia,
 operacje (faza \textbf{Map}).
 Po wykonaniu wszystkich obliczeń następuje etap agregowania (faza \textbf{Reduce}) otrzymanych wyników.
 Zyski z takiego podejścia najlepiej są widoczne w środowisku rozproszonym (wiele maszyn, procesów i wątków),
@@ -88,16 +88,21 @@ gdzie dzięki dekompozycji zadania wzrastają możliwości skalowania.
 \subsection{Przetwarzanie strumieniowe}
 
 Wymagania użytkowników co do czasu otrzymania wyniku
-oraz pewna klasa problemów charakteryzyjąca się dużą szybkością napływania danych powodują,
+oraz pewna klasa problemów charakteryzujących się:
+\begin{enumerate}
+	\item dużą szybkością napływania danych -- dane z czujników, sensorów, etc.,
+	\item małymi opóźnieniami (\textit{latancy}) podczas procesowani -- wykrywanie oszustw (\textit{fraud detection}),
+\end{enumerate}
+powodują,
 że metody przetwarzania wsadowego nie znajdują zastosowania.
 Podejście strumieniowe polega na analizie danych bezpośrednio po ich pojawieniu się.
-Nie jest instotny sposób w jaki dane się pojawiają,
+Nie jest istotny sposób w jaki dane się pojawiają,
 ale fakt,
 że są procesowane natychmiast po pojawieniu się.
 Mechanizmy analizy strumieniowej można podzielić na 2 typy z uwagi na sposób przetwarzania:
 \begin{itemize}
 	\item \textbf{Niezależne}.
-	Każdy nowy element (zdarzenie) jest przetwarzany pojedyńczo i niezależnie od innych.
+	Każdy nowy element (zdarzenie) jest przetwarzany pojedynczo i niezależnie od innych.
 	Po wykonaniu operacji przekazywany jest do nowego strumienia bądź umieszczany w strumieniu wyjściowym.
 	\item \textbf{Buforowane}.
 	Elementy napływające ze strumienia przetrzymywane są przez zdefiniowany okres czasu

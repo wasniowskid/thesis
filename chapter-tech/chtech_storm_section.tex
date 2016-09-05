@@ -10,7 +10,7 @@ Stworzony został przez inżynierów z firmy
 Backtype (Marz, 2014),
 a po jej przejęciu, rozwijany przez inżynierów Twittera.
 Obecnie projekt został otwarty publicznie dla społeczności \textit{open-source}
-i jest nadzworowany przez fundację Apache.
+i jest nadzorowany przez fundację Apache.
 
 \subsubsection*{Elementy składowe Storm}
 \label{subs:StormElemets}
@@ -47,7 +47,7 @@ Przykładowo mogą to być:
 \textit{Bolts} są elementami w topologiach,
 w których wykonywana jest właściwa praca na danych.
 Mogą przyjmować na wejście dowolną liczbę strumieni,
-przeprosować jest
+przeprocesować je
 i jeśli zajdzie taka potrzeba stworzyć nowe strumienie.
 \textit{Bolts} mogą podłączać się do strumieni generowanych przez \textit{spouts},
 jak i do innych \textit{bolts}.
@@ -63,17 +63,17 @@ Typowymi zastosowaniami \textit{bolts} są:
 \subsubsection*{Mechanizmy procesowania rozproszonego}
 Storm od początku projektowany był z myślą o procesowaniu rozproszonym,
 pozwalającym na łatwe skalowanie horyzontalne.
-Zadania dzielone są na wiele niezależnych od siebie podzadań,
+Zadania dzielone są na wiele niezależnych od siebie pod-zadań,
 które mogą być uruchamiane równolegle na wielu maszynach na raz.
 
 Elementy ułatwiające realizację wymagań można podzielić na cztery główne grupy.
 \begin{enumerate}
-  \item Węzły (\textit{nodes}) są pojedyńczymi maszynami podłączonymi do klastra Storm,
+  \item Węzły (\textit{nodes}) są pojedynczymi maszynami podłączonymi do klastra Storm,
   na których wykonywane są topologie.
-  \item Procesy (\textit{workers}) są fizyczne procesy uruchniane na węzłach.
+  \item Procesy (\textit{workers}) są fizyczne procesy uruchamiane na węzłach.
   Na jednym węźle może być uruchomionych więcej niż jeden proces.
   \item Wątki (\textit{executors}) są to standardowe wątki uruchomiana wewnątrz procesów.
-  \item Zadania (\textit{tasks}) są instancjami obiektów typu \textit{stouts} i \textit{bolts}.
+  \item Zadania (\textit{tasks}) są instancjami obiektów typu \textit{spouts} i \textit{bolts}.
   Operacje są wywoływane przez wątki.
 \end{enumerate}
 Zależności elementów pomiędzy sobą przedstawiono na rysunku \ref{fig:StormParallel}.
@@ -86,15 +86,15 @@ Zależności elementów pomiędzy sobą przedstawiono na rysunku \ref{fig:StormP
 
 \subsubsection*{Zarządzanie klastrem}
 Klaster Storma wykorzystuje klasyczne podejście \textit{master}/\textit{slave}
-jednak w troche innym znaczeniu.
-W architekturze typu \textit{master}/\textit{slave} najcześciej jest jeden węzeł nadrzędny (\textit{master}),
+jednak w trochę innym znaczeniu.
+W architekturze typu \textit{master}/\textit{slave} najczęściej jest jeden węzeł nadrzędny (\textit{master}),
 który jest wcześniej zapisany w konfiguracji
 bądź jest wybierany dynamicznie po starcie.
 W przypadku Storma zostało zastosowane drugie podejście.
 Klaster Storma (rys. \ref{fig:StormCluster}) składa się z jednego węzła \textit{master} nazywanego \textit{nimbus}
 i jednego bądź więcej węzłów pomocniczych nazywanych zarządcami (\textit{supervisors})
 Dodatkowo do koordynacji komunikacji pomiędzy nimbusem,
-a zarządcami wykorystywany jest Apache ZooKeeper.
+a zarządcami wykorzystywany jest Apache ZooKeeper.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{img/stormCluster}

@@ -63,7 +63,7 @@ where
 
 * Prosta instalacja i użytkowanie
 * Ekspresyjny język
-** Operacje na pojedyńczych rekordach
+** Operacje na pojedynczych rekordach
 ** Filtrowanie
 ** Agregacja
 ** Funkcje czasowe (window-sliding)

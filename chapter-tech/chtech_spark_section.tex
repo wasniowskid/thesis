@@ -10,7 +10,7 @@ Wykorzystywany jest z powodzeniem w operacjach związanych z:
 Apache Spark charakteryzuje się:
 \begin{itemize}
   \item \textbf{Łatwością w korzystaniu}.
-  Dostarczony model programistyczny skrzętnie ukrywa szczególy implementacyjne związane z procesowaniem rozproszonym.
+  Dostarczony model programistyczny skrzętnie ukrywa szczegóły implementacyjne związane z procesowaniem rozproszonym.
   Dzięki temu programista może skupić się tylko na zadaniu.
   Dodatkowo dzięki wykorzystaniu popularnych języków (java, scala) próg wejścia jest relatywni niski,
   a programy wykorzystywane przez Sparka są rozumiane nawet przez osoby nie związane.
@@ -19,7 +19,7 @@ Apache Spark charakteryzuje się:
   Z powodzeniem można tworzyć zadania przetwarzania wsadowego,
   interaktywne analizy czy wykorzystywać mechanizmy uczenia maszynowego.
   \item \textbf{Skalowalnością}.
-  Spark dostarcza od razu mechanizmy umożliwiąjące skalowanie horyzontalne.
+  Spark dostarcza od razu mechanizmy umożliwiające skalowanie horyzontalne.
   Wystarczy dołączyć nową maszynę do klastra.
   Mechanizym skalowania włączone są automatycznie,
   tzn. nie trzeba żadnych zmian w kodzie by mięć działający klaster.
@@ -41,14 +41,14 @@ i procesowanie strumieniowe (Spark Streaming).
 \subsubsection*{Spark SQL}
 Moduł dodający możliwość operowania na danych wykorzystywanych przez Sparka za pomocą języka SQL.
 Pochodzenie danych nie ma znaczenia. Mogą być umieszone w
-relacyjnych bazach danych, NoSQL, JSON, CSV czy innych ustrukutoryzowanych formatach.
+relacyjnych bazach danych, NoSQL, JSON, CSV czy innych ustrukturyzowanych formatach.
 Szczegóły implementacyjne są skutecznie ukrywane.
 
 Spark SQL można bezproblemowo wykorzystywać razem z innymi modułami (Spark Streaming, Spark ML czy GraphX).
-Może być wykorzystywany zarówno w przetwarzniu wstadowym historycznych danych
+Może być wykorzystywany zarówno w przetwarzaniu wsadowym historycznych danych
 czy analizie strumieniowej w czasie rzeczywistym.
 \subsubsection*{Spark GraphX}
-Grapx dostarcza struktury danych umożliwiające na reprezentacje danych w fomie grafów
+Grapx dostarcza struktury danych umożliwiające na reprezentacje danych w formie grafów
 zarówno sterowanych jak i niesterowanych.
 Dodatkowo w tym module znajdują się przygotowana operatory i algorytmy umożliwiające prace z grafami.
 \subsubsection*{Spark MLlib}
@@ -62,8 +62,8 @@ Moduł ten zawiera wiele zaimplementowanych algorytmów między innymi do:
 \end{itemize}
 i wiele innych.
 \subsubsection*{Spark Streaming}
-Moduł Spark Streaming roszerza podstawowe funkcjonalności o przetwarzanie strumieniowe danych.
-Ponieważ pod spodem wykorzystywany jest Spark gotowe rozwiązania także charakteryzyją się wysoką skalowalnością
+Moduł Spark Streaming rozszerza podstawowe funkcjonalności o przetwarzanie strumieniowe danych.
+Ponieważ pod spodem wykorzystywany jest Spark gotowe rozwiązania także charakteryzują się wysoką skalowalnością
 i odpornością na awarie.
 Spark Streaming przetwarza dane poprzez buforowanie.
 Strumień dzielony jest na mini-wsady o konfigurowanym rozmiarze,
