@@ -36,7 +36,7 @@ w pewnym momencie czasu mogło nastąpić przesunięcie średniej (rys. \ref{fig
 %   \label{fig:SignalFilter}
 % \end{figure}
 
-\subsection{Metody wykrywania zmian}
+\section{Metody wykrywania zmian}
 
 Przez lata z uwagi na swoje znaczenie problem wykrywania zmian skupiał uwagę naukowców i badaczy.
 Powstało wiele metod starających się go rozwiązać.
@@ -48,7 +48,7 @@ Większość z nich opiera się na:
   \item elementach uczenia maszynowego.
 \end{itemize}
 W dalszej częsci rozdziału zostaną omówione wartości progowe i metody analityczne
-\subsubsection{Wartości progowe}
+\subsection{Wartości progowe}
 Najprostszym sposobem wykrywania sytuacji nietypowych jest ustalenie wartości progowej (\textit{threshold value}),
 której przekroczenie oznacza wystąpienie zmiany.
 Przykład przedstawiono na rysunku \ref{fig:SignalThreshold}.
@@ -71,11 +71,30 @@ Strategia skutecznie stosowana w:
 \end{figure}
 
 \newpage
-\subsubsection{Metody analityczne}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+\subsection{Metody analityczne}
+
+Metody analityczne do rozwiązania problemu wykrywania zmian wykorzystują aparat matematyczny,
+głównie statystykę.
+Budują na podstawie otrzymywanych danych
+oraz wewnętrznego modelu funkcję prawdpobieństwa wystąpienia sytuacji nietypowej.
+Na jej podstawie możliwe jest wtedy podjęcie decyzji.
+Na rysunku \ref{fig:SignalAnalytics} przedstawiono strumień,
+w którym wystąpił szereg zmian.
+Poniżej znajduję się odpowiadająca funkcja opisująca prawdopobieństwo wystąpienia zmiany w tym strumieniu.
 \begin{figure}[htbp]
 \centering
-	\includegraphics[width=0.8\textwidth]{img/ch-2-change}
-	\caption{Wykrywanie sytuacji nietypowych -- wartość progowa}
+	\includegraphics[width=1\textwidth]{img/ch-2-change}
+	\caption{Wykrywanie sytuacji nietypowych -- funkcja prawdobieństwa}
   \label{fig:SignalAnalytics}
 \end{figure}
+
+Metody analityczne dzielą się na dwie grupy:
+\begin{itemize}
+  \item \textbf{offline} -- wymagają całego zestawu danych,
+  \item \textbf{online} -- przyrostowo analizują dane.
+\end{itemize}
+Metody offline charakteryzują się większą dokładnością wyników,
+za cenę większych opóźnień.
+Są wykorzystywane w analizach danych z czujników pogodowych, segmentacji DNA, itp.
+Metody online mają praktycznie niezauważalne opóźnienia,
+obarczone są jednak większymi błędami.
