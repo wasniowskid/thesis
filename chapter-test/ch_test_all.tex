@@ -42,6 +42,14 @@ i polega na modyfikacji macierzy kowariancji $\Sigma$.
     \begin{pmatrix} 1 & \frac{4}{5} + \frac{N-2}{500} \\ \frac{4}{5} + \frac{N-2}{500} & 1 \end{pmatrix} & \quad N = 2,4,\ldots\\
   \end{cases}
 \]
+\subsubsection*{Badanie sprawności}
+Do oceny sprawności algorytmów wykorzystano miary zapraponowane przez Liu (Liu i in., 2013):
+\begin{itemize}
+  \item współczynnik sukcesów (\textit{true positive rate, TPR}): $n_{s}/n_{c}$,
+  \item wspólczynnik fałszywych alarmów (\textit{false positive rate, NPR}): $(n_{a}-n_{s})/n_{a}$,
+\end{itemize}
+gdzie $n_{s}$ to liczba poprawnie wykrytych zmian, $n_{c}$ to liczba wprowadzonych zmian,
+a $n_{a}$ to liczba wszystkich wykrytych zmian.
 
 \subsection*{Dane rzeczywiste}
 Dane rzeczywiste zebrano za pomocą czujnika światła oraz czujnika zbiżeniowego.
@@ -87,7 +95,5 @@ wynik był podawany w cm.
 \newpage
 \section{Wyniki eksperymentów}
 W poniższym rozdziale zostaną przedstawione wyniki przeprowadzonych badań.
-\subsection{Studium przypadku}
-\input{chapter-test/ch-test-experiment-light}
-\subsection{Analiza modeli}
-\subsection{Analiza porównawcza}
+\subsection{Skacząca średnia}
+\input{chapter-test/ch_test_jumping}
