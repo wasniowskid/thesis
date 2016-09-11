@@ -1,2 +1,31 @@
 \section{Algorytm Bayesa}
 \label{sec:Bayes}
+Zaproponowany przez Adamsa (Adams i MacKay, 2007) algorytm Bayesa (\textit{Bayesian Online Changepoint Detection})
+oparty jest na wykorzystaniu prawdopodobieństwa warunkowego Bayesa.
+Algorytm dzięki swoim właściwościom możliwy jest do zastosowania w analizie strumieniowej,
+ponieważ nie potrzebuje kompletu danych by wskazać miejsca wystąpienia zmiany.
+Zainteresowany jest wyłącznie ostatnią.
+
+Głównym elementem algorytmu jest przebieg (\textit{run, r}).
+Przebieg $t$ jest to zbiór napływających próbek od ostatniej zmiany do chwili $t$.
+Długość przebiegu to liczba próbek należąca do niego.
+W chwili nadejścia nowej próbki,
+możliwe są dwie opcje.
+Nowa próbka należy do aktualnego przebiegu i jest do niego dodawana,
+albo nastąpiła zmiana i przebieg jest zerowany.
+Dzięki temu i na podstawie danych zebranych w aktualnym przebiegu
+możliwe jest przewidzenie prawdopodobieństwa wystąpienia zmiany w chwili $t$,
+$P(r_t|x_{1:t})$.
+
+\subsection*{Kroki algorytmu}
+\begin{enumerate}
+  \item \textbf{Inicjalizacja} -- ustalenie wartości początkowych zgodnych z założonym rozkładem a priori.
+  \item \textbf{Pobranie nowej próbki}.
+  \item \textbf{Aktualizacja prawdopodobieństw}:
+    \begin{itemize}
+      \item wzrostu przebiegu,
+      \item zmiany.
+    \end{itemize}
+  \item \textbf{Wyznaczenie nowej wartości przebiegu}.
+  \item \textbf{Aktualizacja} -- modyfikaja parametrów algorytmu.
+\end{enumerate}
