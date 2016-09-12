@@ -36,7 +36,7 @@ Jeśli są różniące się pod-okna to znaczy,
 że nastąpiła zmiana. Na koniec kasowane jest starsze pod-okno.
 Minimalna wielkość pod-okna i sposób ich porównania zależą od wybranego testu statystycznego
 na zgodność rozkładów pod-okien.
-\subsection{Testy rozkładu - średnia, wariancja}
+\subsection{Testy rozkładu -- średnia, wariancja}
 \label{sub:TestsMeanAndVar}
 Najprostszym sposobem na sprawdzenie czy dwa pod-okna nie różnią się od siebie
 jest sprawdzenie czy ich średnie nie różnią się od siebie.
@@ -52,5 +52,33 @@ $$m=\frac{1}{\frac{1}{n_0}+\frac{1}{n_1}}$$
 $$\varepsilon = \sqrt{\frac{2}{m} \sigma^{2}_{W} \mbox{ln}\frac{2}{q^\prime}} + \frac{2}{3m} + \mbox{ln}\frac{2}{q^\prime},$$
 gdzie $\sigma^{2}_{W}$ to wariancja całego okna $W$,
 a $q$ to poziom istotności testu.
-\subsection{Testy rozkładu - stosunek gęstości}
+\subsection{Testy rozkładu -- stosunek gęstości}
 \label{sub:TestDensityRatio}
+Przedstawiony wcześniej test sprawdza się dobrze,
+gdy dane można opisać rozkładem normalnym.
+Gdy jednak dane pochodzą z innych rozkładów albo mają więcej wymiarów pojawiają się problemy.
+Tych mankamentów nie ma test opisany poniżej.
+
+Dane $x_1,x_2,\ldots,x_t,\ldots \in \mathbb{R}^n$ i mogą pochodzić z różnych rozkładów.
+Niech
+$$ Y(t) = {x_t, x_{t+1}, x_{t+2}, \ldots, x_{t+n-1}}$$
+będzie podzbiorem próbek zaczynającym się w chwili $t$.
+Zmianą można nazwać,
+gdy dla dwóch następujących po sobie zbiorów $Y(t)$ i $Y(t+n)$
+wartość miary opisującej ich róznice jest wystarczająco duża.
+
+Do popularnych miar rozbieżności opartych na rozkładach prawdopodobieństaw należy miara Kullbacka-Leiblera:
+$$\mbox{KL}(P||P^\prime) = \int p(\textbf{Y}) \mbox{log}\frac{p(\textbf{Y})}{p^\prime(\textbf{Y})} \mbox{d}\textbf{Y},$$
+gdzie $P$ to rozkład prawdopodobieństwa zbioru $Y(t)$,
+$P^\prime$ zbioru $Y(t+n)$,
+natomiast $p(\textbf{Y})$ i $p^\prime(\textbf{Y})$ to funkcje gęstości rozkładów $P$ i $P^\prime$.
+
+Początkowo badacze starali się obliczyć $p(\textbf{Y})$ i $p^\prime(\textbf{Y})$ osobno
+i dopiero potem wyliczyć ich stosunek.
+Jednak takie podejście okazało się trudne.
+Sugiyama (Sugiyama i in., 2008) w swojej pracy zaproponował próbę bezpośredniego przybliżenia stosunku gęstości.
+$$\hat{\mbox{KL}} = \frac{1}{n} \sum\limits_{i=1}^n \mbox{log}\,\hat{g}(\textbf{Y}_i),$$
+gdzie $\hat{g}(\textbf{Y}_i)$ jest estymatorem stosunku gęstości.
+
+Wartość estymatora otrzymujemy
+$$\hat{g}(\textbf{Y}) = \sum\limits_{l=1}^n \hat{\theta}_l K(\textbf{Y}, \textbf{Y}_l)$$
