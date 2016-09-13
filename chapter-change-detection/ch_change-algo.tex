@@ -1,0 +1,25 @@
+\section{Szczegóły implementacyjne}
+Jednym z celów tej pracy była próba zastosowania współczesnych platform do analizy strumieniowej (rozdział \ref{ch:tech})
+do rozwiązania problemu wykrywania zmian.
+Zastosowanie metod opartych na wartościach progowych nie należy do zbyt skomplikowanych zagadnień
+i już dziś jest wiele gotowych rozwiązań.
+Dlatego w dalszej części pracy skupiono się na metodach analitycznych.
+
+Obecnie istnieje wiele gotowych algorytmów wykrywających zmianę,
+jednak wymagają korzystania ze specjalistycznych plaform (Matlab) albo nie mają wersji
+przystosowanych do analizy strumieniowej.
+Jednym z takich algorytmów jest algorytm Bayesa (Adams i MacKay, 2007).
+Należy do grupy algorytmów przetwarzających dane na bieżąco \textit{online},
+dzięki czemu łatwo było wykonać port na platformę Storm.
+
+Innym popularnym algorytmem jest ADWIN (Bifet i in., 2011).
+Należy do platformy MOA (\textit{Massive Online Analysis}).
+Oryginalny algorytm, dostarczony przez autorów,
+wykorzystuje relatywnie prosty test na sprawdzenie czy zmiana zaszła.
+Dokładny opis znajduję się w następnym rozdziale.
+Niestety test zaproponowany przez Bifeta (Bifet i in., 2011) nie działa skutecznie,
+gdy problem okazuje się bardziej skomplikowany -- na przykład dodatkowe wymiary.
+Dlatego dodatkowym celem postawionym przed pracą,
+była próba poprawienia tego algorytmu.
+Jako sposób osiągnięcia go wybrano zaproponowanie i zaimplementowanie innego testu --
+opartego na stosunku funkcji gęstości rozkładów prawdopodobieństwa.
