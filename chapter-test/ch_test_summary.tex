@@ -2,7 +2,7 @@ Wyniki przeprowadzonych testów pokazują,
 że możliwe jest wykorzystanie współczesnych platform do analizy strumieniowej
 do problemu wykrywania zmian.
 Wszystkie algorytmy z rozdziału \ref{ch:algo} osiągneły skuteczność w wykrywaniu zmian
-na poziomie około 50\%.
+na poziomie około 30\% do 50\%.
 Metody oparte o okno przesuwne (ADWIN) okazały się jednak skuteczniejsze.
 
 W przypadku danych jednowymiarowych otrzymane wyniki dla rodziny ADWIN były bardzo do siebie zbliżone.
@@ -10,9 +10,23 @@ Rożnica pomiędzy nimi pojawiła się dopiero podczas testów na danych wielowy
 Z uwagi na budowę swojego testu $\mbox{ADWIN}_\mu$, opartego na średniej i wariancji,
 nie był w stanie wykrywać zmian.
 $\mbox{ADWIN}_d$ oparty na generycznych teście ilorazu gęstości rozkładu prawdopodobieństw radził sobie bez problemów.
-Niestety obarczony był dużym narzutem obliczeniowym,
+Niestety obarczony był dużym narzutem wydajnościowym,
 związanym z koniecznością rozwiązania zadania optymalizacyjnego podczas obliczania estymaty ilorazu.
 
 Wszystkie badane algorytmy cechowały się dużym współczynnikem generowanych fałszywych alaramów.
 Najprawdopodobniej wynika to z braku wcześniejsze pre-procesowania danych wejściowych.
 Jako pre-processing można rozumieć na przykład wygładzenie przebiegów poprzez użycie róznego rodzaju filtrów.
+
+Przeprowadzone eksperymenty pokazują,
+że nie ma algorytmu idealnego (uniwersalnego),
+pasującego do wszystkich kategorii problemów.
+Każdy z nich pasuje do innych sytuacji.
+$\mbox{ADWIN}_\mu$ nie obsługuje danych wielowymiarowych,
+ale za to skutecznie wykrywa zmiany w środowisku jednowymiarowym.
+Dodatkowo charakteryzuje się małym zapotrzebowaniem na zasoby i bardzo szybkimi odpowiedziami.
+$\mbox{ADWIN}_\mu$ efektywnie wykrywa zmiany w rozkładach jedno i wielowymiarowych,
+jednak charakteryzuje się dużą złożonością i wysokimi czasami odpowiedzi,
+co niestety nie pozwala na jego wykorzystanie praktyczne.
+Algorytm Bayesa także wykrywa zmiany w rozkładach jedno i wielowymiarowych.
+Jego mankamentem jest konieczność wcześniejszego znania rozkładu jakim opisane są próbki,
+przez co nie można go zastosować do rozwiązywania generycznych problemów.
