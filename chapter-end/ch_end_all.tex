@@ -1,1 +1,27 @@
 \chapter{Zakończenie}
+W ramach pracy magisterskiej została przedstawione zagadnienie wykrywania zmian w kontekscie analizy strumieniowej.
+Dokonano przeglądowej analizy jakościowej i wydajnościowej wybranych platform z rozdziału \ref{ch:tech}.
+Z wykorzytniem Apache Storm zostały zaimplementowane algorytmy z rodziału \ref{ch:algo},
+dzięki czemu możliwe bylo sprawdzenie ich możliwości.
+
+Metody wykrywania zmian opisane w niniejszej pracy,
+mogą mieć wiele praktycznych zastosowań.
+Utworzone modele wzbogacone o funkcji związane z interfejsem użytkownika (GUI) mogą posłużyć
+jako moduły systemów monitorujących, alaramowych, e-commerce i wielu innych.
+
+W rodziale \ref{ch:changes} przedstawiono wybrane algorytmy wykrywania zmian realizujące jeden z celów pracy.
+Wyniki przestawione w rozdziale piątym pokazują,
+że wszystkie sprawdzone metody wykrywają zmiany na zadowalającym poziomie.
+Zasadnicze różnice pojawiają się w zużyciu zasobów i czasach potrzebnych do otrzymania wyników.
+Różnice wynikają w wewnętrznej budowy algorytmów.
+Algorytmem o największym potencjale jeśli chodzi o wyniki jest $ADWIN_d$,
+jednak jest także tym, który działał najwolniej.
+Z uwagi na małe różnice pomiędzy $ADWIN_d$, a $ADWIN_\mu$ dla danych jednowymiarowych
+wydaje się że optymalnym zastowaniem do celów praktyczych jest $ADWIN_\mu$.
+
+Na podstawie wyników można stwierdzić,
+że wadą wszystkich metod jest wysoka częstotliwość generowania fałszywych alarmów.
+Tak wysokie ich występowanie podważa sens praktycznego zastowania analizowanych algorytmów.
+Dlatego też dalszym kierunkiem rozwoju pracy może być próba ustabilizowania danych wejściowych
+poprzez zastosowanie różnego rodzaju filtrów wygładzających.
+Innym możliwym kierunkiem jest wybór mniej złożonych testów na zgodność rozkładów.
