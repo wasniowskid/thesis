@@ -1,0 +1,18 @@
+Wyniki przeprowadzonych testów pokazują,
+że możliwe jest wykorzystanie współczesnych platform do analizy strumieniowej
+do problemu wykrywania zmian.
+Wszystkie algorytmy z rozdziału \ref{ch:algo} osiągneły skuteczność w wykrywaniu zmian
+na poziomie około 50\%.
+Metody oparte o okno przesuwne (ADWIN) okazały się jednak skuteczniejsze.
+
+W przypadku danych jednowymiarowych otrzymane wyniki dla rodziny ADWIN były bardzo do siebie zbliżone.
+Rożnica pomiędzy nimi pojawiła się dopiero podczas testów na danych wielowymiarowych.
+Z uwagi na budowę swojego testu $\mbox{ADWIN}_\mu$, opartego na średniej i wariancji,
+nie był w stanie wykrywać zmian.
+$\mbox{ADWIN}_d$ oparty na generycznych teście ilorazu gęstości rozkładu prawdopodobieństw radził sobie bez problemów.
+Niestety obarczony był dużym narzutem obliczeniowym,
+związanym z koniecznością rozwiązania zadania optymalizacyjnego podczas obliczania estymaty ilorazu.
+
+Wszystkie badane algorytmy cechowały się dużym współczynnikem generowanych fałszywych alaramów.
+Najprawdopodobniej wynika to z braku wcześniejsze pre-procesowania danych wejściowych.
+Jako pre-processing można rozumieć na przykład wygładzenie przebiegów poprzez użycie róznego rodzaju filtrów.
