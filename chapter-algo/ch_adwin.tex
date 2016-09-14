@@ -67,7 +67,7 @@ Zmianą można nazwać,
 gdy dla dwóch następujących po sobie zbiorów $Y(t)$ i $Y(t+n)$
 wartość miary opisującej ich róznice jest wystarczająco duża.
 
-Do popularnych miar rozbieżności opartych na rozkładach prawdopodobieństaw należy miara Kullbacka-Leiblera:
+Do popularnych miar rozbieżności opartych na rozkładach prawdopodobieństaw należy miara Kullbacka-Leiblera (Liu i in., 2013):
 $$\mbox{KL}(P||P^\prime) = \int p(\textbf{Y}) \mbox{log}\frac{p(\textbf{Y})}{p^\prime(\textbf{Y})} \mbox{d}\textbf{Y},$$
 gdzie $P$ to rozkład prawdopodobieństwa zbioru $Y(t)$,
 $P^\prime$ zbioru $Y(t+n)$,
@@ -79,6 +79,7 @@ Jednak takie podejście okazało się trudne.
 Sugiyama (Sugiyama i in., 2008) w swojej pracy zaproponował próbę bezpośredniego przybliżenia stosunku gęstości.
 $$\hat{\mbox{KL}} = \frac{1}{n} \sum\limits_{i=1}^n \mbox{log}\,\hat{g}(\textbf{Y}_i),$$
 gdzie $\hat{g}(\textbf{Y}_i)$ jest estymatorem stosunku gęstości.
-
 Wartość estymatora otrzymujemy
-$$\hat{g}(\textbf{Y}) = \sum\limits_{l=1}^n \hat{\theta}_l K(\textbf{Y}, \textbf{Y}_l)$$
+$$\hat{g}(\textbf{Y}) = \sum\limits_{l=1}^n \hat{\theta}_l K(\textbf{Y}, \textbf{Y}_l),$$
+gdzie $K(\textbf{Y}, \textbf{Y}_l)$ to jądro Gaussa (\textit{Gaussian kernel}), $\hat{\theta}$
+to parametry wyliczone na podstawie próbek.
