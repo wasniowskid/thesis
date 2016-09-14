@@ -26,7 +26,7 @@ natomiast im krótsze tym szybciej reagują na zmiany.
 
 Algorytm ADWIN (\textit{ADaptive WINdow}) zaproponowany przez Bifeta (Bifet i in., 2011)
 wykorzystuje okno, jednak jego rozmiar jest dynamiczny,
-tj. nie ma ustalonego wymiaru i zmienia się w czasie, w zależności od procesowanych danych.
+tj. nie ma ustalonego wymiaru i zmienia się w czasie, w zależności od przetwarzanych danych.
 
 Głównym elementem algorytmu jest przesuwne okno $W$,
 którego zawartością są aktualne rekordy $x_{i}$.
@@ -65,9 +65,9 @@ $$ Y(t) = [{x_t, x_{t+1}, x_{t+2}, \ldots, x_{t+n-1}}]$$
 będzie podzbiorem próbek zaczynającym się w chwili $t$.
 Zmianą można nazwać,
 gdy dla dwóch następujących po sobie zbiorów $Y(t)$ i $Y(t+n)$
-wartość miary opisującej ich róznice jest wystarczająco duża.
+wartość miary opisującej ich różnice jest wystarczająco duża.
 
-Do popularnych miar rozbieżności opartych na rozkładach prawdopodobieństaw należy miara Kullbacka-Leiblera (Liu i in., 2013):
+Do popularnych miar rozbieżności opartych na rozkładach prawdopodobieństa należy miara Kullbacka-Leiblera (Liu i in., 2013):
 $$\mbox{KL}(P||P^\prime) = \int p(\textbf{Y}) \mbox{log}\frac{p(\textbf{Y})}{p^\prime(\textbf{Y})} \mbox{d}\textbf{Y},$$
 gdzie $P$ to rozkład prawdopodobieństwa zbioru $Y(t)$,
 $P^\prime$ zbioru $Y(t+n)$,

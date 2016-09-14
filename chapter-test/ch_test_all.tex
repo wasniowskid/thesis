@@ -3,6 +3,7 @@
 W poniższym rozdziale wybrane modele z rozdziału \ref{chap:ChangeDetectionAlgo} zostaną,
 w celu zbadania efektywności algorytmów,
 przetestowane na losowych zbiorach danych.
+Platforma na której uruchomiono wszystkie testy to Apache Storm.
 Sekcja ta została podzielona na dwie części.
 Pierwsza przedstawia szczegółową analizę problemu z wykorzystaniem badanych metod,
 natomiast w części drugiej znajdują się zbiorcze wyniki przeprowadzonych doświadczeń.
@@ -21,7 +22,7 @@ Dla każdego z testów wygenerowano 20 zbiorów danych.
 Każdy ze zbiorów liczył 5000 elementów.
 Zmiana wprowadzana była co 100 próbek.
 Jako poprawnie wykrytą zmianę uważano zmianę otrzymaną za pomocą algorytmu,
-która była w odległości $\pm$ 20 próbek od prawdziwego punktu zmiany. 
+która była w odległości $\pm$ 20 próbek od prawdziwego punktu zmiany.
 
 \subsubsection*{Skacząca średnia}
 Jednowymiarowy model auto-regresji wykorzystany przez Liu (Liu i in., 2013)
@@ -52,13 +53,13 @@ i polega na modyfikacji macierzy kowariancji $\Sigma$.
 Do oceny sprawności algorytmów wykorzystano miary zapraponowane przez Liu (Liu i in., 2013):
 \begin{itemize}
   \item współczynnik sukcesów (\textit{true positive rate, TPR}): $n_{s}/n_{c}$,
-  \item wspólczynnik fałszywych alarmów (\textit{false positive rate, NPR}): $(n_{a}-n_{s})/n_{a}$,
+  \item współczynnik fałszywych alarmów (\textit{false positive rate, NPR}): $(n_{a}-n_{s})/n_{a}$,
 \end{itemize}
 gdzie $n_{s}$ to liczba poprawnie wykrytych zmian, $n_{c}$ to liczba wprowadzonych zmian,
 a $n_{a}$ to liczba wszystkich wykrytych zmian.
 
 \subsection*{Dane rzeczywiste}
-Dane rzeczywiste zebrano za pomocą czujnika światła oraz czujnika zbiżeniowego.
+Dane rzeczywiste zebrano za pomocą czujnika światła oraz czujnika zbliżeniowego.
 Czujniki leżały na biurku i skierowane pionowo w kierunku sufitu.
 Przykładowe wyniki czujników przedstawiono w tabeli \ref{tab:DeviceValues}.
 Wykres \ref{fig:DeviceValues} przedstawia przebiegi ostatnich 5000 próbek.

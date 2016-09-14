@@ -107,15 +107,15 @@ a zarządcami wykorzystywany jest Apache ZooKeeper.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{img/stormCluster}
-  \caption{Elementry klastra Storm}
+  \caption{Elementy klastra Storm}
   \label{fig:StormCluster}
 \end{figure}
 
 Węzeł \textit{nimbus} jest odpowiedzialny za zarządzanie,
 koordynowanie i monitorowania wszystkich topologi pracujących w klastrze.
 Dodatkowo zajmuje się także przydziałem zadań dla krotek
-oraz pilmowaniem by wszystkie zadania zostały wykonane.
-W przypadku awiarii \textit{nimbus} uruchamia ponownie zadanie w innym miejscu klastra.
+oraz pilnowaniem by wszystkie zadania zostały wykonane.
+W przypadku awarii \textit{nimbus} uruchamia ponownie zadanie w innym miejscu klastra.
 Węzeł zarządzający odpowiedzialny jest za przydział zadań otrzymanych z \textit{nimbusa}.
 Tworzy nowy procesy (\textit{workers}) w ramach węzła,
-przydziele do nich zadania.
+przydziale do nich zadania.
