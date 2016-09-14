@@ -76,11 +76,16 @@
 \newcommand{\streszczenie}{
 W dziesiejszych czasach komputery i inne urządzenia elektroniczne generują dziennie terabajty danych.
 Klasyczne metody ich analizą niewystarczające.
-Zarówno z powodu wolumenu danych jak i coraz bardziej wymagających użytkowników,
+Zarówno z powodu wolumenu danych jak i bardziej wymagających użytkowników,
 chcących szybciej otrzymywać wyniki.
-W niniejszej pracy sprawdzono możliwości wykorzystania metod analitycznych w kontekscie wykrywania zmian
-z wykorzystaniem współczesnych narzędzi do analizy strumieniowej.
-Podejście to jest badane na losowo wygenerowanych danych jak i rzeczywistych.
+Jednym ze sposobów przetwarzania danych w takich sytuacjach jest analiza strumieniowa.
+Rozwiązania takie cechują się małymi opóźnieniami,
+dane przetwarzane są na bieżąco, praktycznie w czasie rzeczywistym.
+W ramach niniejszej pracy sprawdzono możliwości współczesnych systemów do przetwarzania strumieniowego: Esper,
+Apache Spark i Apache Storm, a następnie dla platformy Storm przygotowano strumieniowe wersje algorytmów Bayesa i ADWIN.
+Algorytm ADWIN został opracowany z wykorzystaniem dwóch różnych testów.
+Pierwszym opartym o wartości średnie oraz drugim wykorzystującym stosunek gęstości rozkładów prawdopobieństwa.
+Algorytmy przetestowano na danych wygenerowanych losowo i na rzeczywistych.
 }
 
 \newcommand{\streszczenieen}{\textbf{Title}: Stream analysis in Internet of Things.\\[3mm]
@@ -89,10 +94,15 @@ Classic methods of data analysis are nowadays insufficient,
 because of a high volume of data and more demanding users.
 In this study it has been examined whether modern stream analysis frameworks
 may help in changepoint detection.
+Using Apache Storm framework implemented a stream version of algorithms: Bayes Online and ADWIN.
+Algorithm ADWIN used two type of test.
+First was based on mean and variance,
+second used density ratio measure.
+Algorithm were tested on artificial data sets and real data sets.
 }
 
-\newcommand{\slowakluczowe}{analiza strumieniowa, internet rzeczy, IoT, storm, wykrywanie zmian}
-\newcommand{\slowakluczoween}{stream analysis, internet of things, IoT, storm, changepoint detection}
+\newcommand{\slowakluczowe}{analiza strumieniowa, internet rzeczy, IoT, storm, wykrywanie zmian, Apache Storm}
+\newcommand{\slowakluczoween}{stream analysis, internet of things, IoT, storm, changepoint detection, Apache Storm}
 
 %-----------------------------------------------------------
 \begin{document}
