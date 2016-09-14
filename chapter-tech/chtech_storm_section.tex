@@ -34,6 +34,15 @@ to topologię działają nieprzerwanie, do czasu gdy zostaną jawnie zatrzymane.
 Podstawową strukturą danych w systemach Storm jest krotka (\textit{tuple}).
 Krotka jest zbiorem par klucz-wartość przepływających pomiędzy elementami topologi.
 Krotka w połączeniu z innymi krotkami tworzy strumień danych.
+Na rysynku \ref{fig:Stream} przedstawiono przykładowy strumień zasilany przez trzy różne źródła danych.
+Krotki są elementami składowymi strumienia.
+Strumień ma tylko jeden kierunekt w którym przetwarzane są krotki.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{img/stream}
+  \caption{Przykład strumienia}
+  \label{fig:Stream}
+\end{figure}
 \subsubsection*{Spouts}
 \textit{Spouts} reprezentują punkty wejścia krotek do topologi Storm.
 Strumienie mają właśnie swój początek w elementach typu \textit{spouts}.

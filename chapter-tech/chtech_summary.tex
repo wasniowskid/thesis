@@ -6,6 +6,12 @@ pomiędzy nimi istnieją zasadnicze różnice.
 Zarówno w obsłudze danych,
 jak i w podejściu do samego przetwarzania.
 
+W ramach niniejszej pracy wcześniej wymienione platformy zostały sprawdzone pod kątem:
+\begin{itemize}
+  \item możliwości jakie oferują,
+  \item sposobu korzystania zarówno od strony użytkownika jak i programisty.
+\end{itemize}
+
 \subsubsection*{Sposób procesowania, opóźnienia, skalowalność}
 Największą różnicą pomiędzy omawianymi platformami jest tryb w jakim procesowane są zdarzenia.
 Spark buforuje (zbiera) napływające dane w zadanym interwale czasu i dopiero potem procesuje,
@@ -30,7 +36,7 @@ nie ma wbudowanych mechanizmów zarządzania klastrami,
 dlatego problem zachowania gwarancji nie istnieje.
 \begin{table}[h]
   \label{tab:ModelComparison}
-  \begin{tabular}{p{0.2\linewidth} | p{0.25\linewidth} | p{0.25\linewidth} | p{0.25\linewidth}}
+  \begin{tabular}{p{0.2\linewidth} | p{0.25\linewidth} | p{0.25\linewidth} | p{0.2\linewidth}}
     & Esper & Spark & Storm \\
     \hline
     typ & silnik CEP & ogólny & ogólny \\
@@ -55,12 +61,45 @@ Esper powstał w języku java, chociaż posiada port napisany w języku C\#.
 Do wykonywania operacji na danych wykorzystuje własny język oparty na SQL.
 \begin{table}[h]
   \label{tab:ProgrammingApi}
-  \begin{tabular}{p{0.2\linewidth} | p{0.25\linewidth} | p{0.25\linewidth} | p{0.25\linewidth}}
+  \begin{tabular}{p{0.2\linewidth} | p{0.25\linewidth} | p{0.25\linewidth} | p{0.2\linewidth}}
     & Esper & Spark & Storm \\
     \hline
     napisany w & java & scala & clojure \\
     \hline
-    api & \textit{DSL} oparty na SQL & jvm, python, R & wiele \\
+    api & java, C\# & jvm, python, R & wiele \\
   \end{tabular}
   \caption{Porównanie platform -- API}
+\end{table}
+
+\subsubsection*{Instalacja, użytkowanie}
+Najprostszym sposobem instalacji cechuje się Esper.
+Biblioteka ma formę pojedynczego pliku, który łatwo podpiąć pod istniejące aplikacje.
+System storm posiada dwa tryby lokalny i zdalny.
+Tryb lokalny pozwala na tworzenie topologii na komputerach bez konieczności tworzenia klastrów.
+Dzięki temu programiści mają ułatwione możliwości rozwoju aplikacji czy szukania przyczyn błędów.
+Tryb zdalny jest przeznaczony dla klastrów.
+Topologie w formie archiwum przesyła się do nadzorcy klastra,
+a on już rozpropagowuje ją wewnątrz.
+Apache Spark jest niestety pozbawiano trybu lokalnego.
+Trzeba stworzyć klaster składający się z jednego węzła.
+
+Esper charakteryzuje się także najprostszym sposobem operowania na strumieniach.
+Dostarczony własny język jest bardzo ekspresywny i bogaty w funkcjonalności.
+W przypadku Apache Spark dostęp do danych jest ukryty za pomocą wewnętrznych struktur.
+Dzięki takiemu podejściu na start dostępnych jest wiele funkcjonalności,
+jednak próba utworzenia dodatkowych elementów nie zawsze może skończyć się sukcesem.
+Brak trybu lokalnego nie ułatwia tworzenia testowych źródeł danych.
+Apache Storm jest najbardziej generycznym narzędziem.
+Większość elementów trzeba wykonać samodzielnie,
+przez co próg wejścia jest większy niż w przypadku pozostałych frameworków.
+\begin{table}[h]
+  \label{tab:ProgrammingLevel}
+  \begin{tabular}{p{0.2\linewidth} | p{0.25\linewidth} | p{0.25\linewidth} | p{0.2\linewidth}}
+    & Esper & Spark & Storm \\
+    \hline
+    instalacja & pojedynczy jar & cały projekt & tryb lokalny/zdalny \\
+    \hline
+    użytkowanie & własny DSL & wewnętrzne api & wewnętrzne api i dowolne skrypty
+  \end{tabular}
+  \caption{Porównanie platform -- instalacja}
 \end{table}
