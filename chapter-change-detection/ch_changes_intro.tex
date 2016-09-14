@@ -9,8 +9,8 @@ Wykrywanie zmian (\textit{changepoint detection, anomaly detection, outlier dete
 wykrycia w strumieniu czasowym wzorców (zmian zachowań, charakterystyk) nie pasujących do wcześniej zaobserwowanych.
 Zmiany mogą mieć wiele różnych form.
 Najpopularniejszą jest zmiana parametrów rozkładu.
-Przykładowo w strumieniu opisanym rozkładem Gaussa o ustalonej wartości średniej i odchylenia standardowego
-w pewnym momencie czasu nastąpępuje przesunięcie średniej (rys. \ref{fig:SignalData}).
+Przykładowo w strumieniu opisanym rozkładem Gaussa o ustalonej wartości średniej i wariancji.
+W pewnym momencie czasu nastąpępuje przesunięcie średniej (rys. \ref{fig:SignalData}).
 \begin{figure}[htbp]
 \centering
 	\includegraphics[width=0.6\textwidth]{img/ch-2-data}
@@ -73,19 +73,18 @@ Strategia skutecznie stosowana w:
 
 \newpage
 \subsection{Metody analityczne}
-
 Metody analityczne do rozwiązania problemu wykrywania zmian wykorzystują aparat matematyczny,
 głównie statystykę.
 Budują na podstawie otrzymywanych danych
-oraz wewnętrznego modelu funkcję prawdopodobieństwa wystąpienia sytuacji nietypowej.
-Na jej podstawie możliwe jest wtedy podjęcie decyzji.
+oraz wewnętrznego modelu funkcję miary wystąpienia sytuacji nietypowej.
+Na podstawie jej wartości możliwe jest wtedy podjęcie decyzji.
 Na rysunku \ref{fig:SignalAnalytics} przedstawiono strumień,
-w którym wystąpił szereg zmian.
-Poniżej znajduję się odpowiadająca funkcja opisująca prawdopodobieństwo wystąpienia zmiany w tym strumieniu.
+w którym wystąpiło kilka zmian.
+Poniżej znajduję się odpowiadająca funkcja opisująca miarę wystąpienia zmiany w tym strumieniu.
 \begin{figure}[htbp]
 \centering
 	\includegraphics[width=1\textwidth]{img/ch-2-change}
-	\caption{Wykrywanie sytuacji nietypowych -- funkcja prawdopodobieństwa}
+	\caption{Wykrywanie sytuacji nietypowych -- wejściowy strumień, wartości miary alg. Bayesa}
   \label{fig:SignalAnalytics}
 \end{figure}
 

@@ -8,8 +8,10 @@ Dlatego w dalszej części pracy skupiono się na metodach analitycznych.
 Obecnie istnieje wiele gotowych algorytmów wykrywających zmianę,
 jednak wymagają korzystania ze specjalistycznych plaform (Matlab) albo nie mają wersji
 przystosowanych do analizy strumieniowej.
-Jednym z takich algorytmów jest algorytm Bayesa (Adams i MacKay, 2007).
-Należy do grupy algorytmów przetwarzających dane na bieżąco \textit{online},
+W ramach pracy poniżej opisane algorytmy zostały zaadaptowane do wersji strumieniowej,
+a jako środowisko do implementacji wybrano framework Apache Storm.
+
+Algorytm Bayesa (Adams i MacKay, 2007) należy do grupy algorytmów przetwarzających dane na bieżąco \textit{online},
 dzięki czemu łatwo było wykonać port na platformę Storm.
 
 Innym popularnym algorytmem jest ADWIN (Bifet i in., 2011).
@@ -19,7 +21,10 @@ wykorzystuje relatywnie prosty test na sprawdzenie czy zmiana zaszła.
 Dokładny opis znajduję się w następnym rozdziale.
 Niestety test zaproponowany przez Bifeta (Bifet i in., 2011) nie działa skutecznie,
 gdy problem okazuje się bardziej skomplikowany -- na przykład dodatkowe wymiary.
-Dlatego dodatkowym celem postawionym przed pracą,
+Jednym z celi postawionych przed pracą,
 była próba poprawienia tego algorytmu.
 Jako sposób osiągnięcia go wybrano zaproponowanie i zaimplementowanie innego testu --
-opartego na stosunku funkcji gęstości rozkładów prawdopodobieństwa.
+opartego na stosunku funkcji gęstości rozkładów prawdopodobieństwa (Liu i in., 2013).
+Oryginalny algorytm Liu oparty na stosunku gęstości wykorzystywał przesuwne okno.
+Jednak miało ono stały (określony przez parametr) rozmiar.
+W ramach prac spróbowano udoskonalić ten algorytm poprzez wykorzystanie idei dynamicznego okna z algorytmu ADWIN.
