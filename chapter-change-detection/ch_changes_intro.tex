@@ -5,29 +5,31 @@ które odbiegają od normalnie obserwowanych zachowań.
 Może to być awaria, przeciążenie systemów,
 trwający atak komputerowy z zewnątrz czy próba oszustwa.
 
-Wykrywanie zmian (\textit{changepoint detection}) jest procesem
+Wykrywanie zmian (\textit{changepoint detection, anomaly detection, outlier detection}) jest procesem
 wykrycia w strumieniu czasowym wzorców (zmian zachowań, charakterystyk) nie pasujących do wcześniej zaobserwowanych.
 Zmiany mogą mieć wiele różnych form.
-Strumień danych może w pewnym momencie charakteryzować się rozkładem Gaussa,
-aby nagle zmienić się na rozkład Poissona (rys. \ref{fig:SignalDist}).
-Przykładem takiej formy jest zachowanie czujnika światła.
-W ciągu dnia, gdy jest słoneczna pogoda na chwilowe wartości może mieć wpływ zachmurzenie, przechodzące osoby, itp.
-W nocy wahania są mniejsze.
-\begin{figure}[htbp]
-\centering
-	\includegraphics[width=0.6\textwidth]{img/ch-2-dist}
-	\caption{Wartości czujnika światła -- wahania w rytmie dzień/noc}
-  \label{fig:SignalDist}
-\end{figure}
-Inną formą może być zmiana parametrów rozkładu.
-Przykładowo w strumieniu opisanym rozkładem Gaussa
-w pewnym momencie czasu mogło nastąpić przesunięcie średniej (rys. \ref{fig:SignalData}).
+Najpopularniejszą jest zmiana parametrów rozkładu.
+Przykładowo w strumieniu opisanym rozkładem Gaussa o ustalonej wartości średniej i odchylenia standardowego
+w pewnym momencie czasu nastąpępuje przesunięcie średniej (rys. \ref{fig:SignalData}).
 \begin{figure}[htbp]
 \centering
 	\includegraphics[width=0.6\textwidth]{img/ch-2-data}
 	\caption{Zmiana parametrów opisujących strumień danych}
   \label{fig:SignalData}
 \end{figure}
+Inną równie często spotykaną sytuacją jest całkowiata zmiana rozkładu.
+Strumień danych charakteryzuje się rozkładem Gaussa,
+aby w pewnym momencie czasu zmienić swoją charakterystykę na rozkład Poissona (rys. \ref{fig:SignalDist}).
+Przykładem takiej formy jest zachowanie czujnika światła.
+W ciągu dnia, gdy jest słoneczna pogoda na chwilowe wartości może mieć wpływ zachmurzenie, przechodzące osoby, itp.
+W nocy wahania są mniejsze.
+\begin{figure}[htbp]
+\centering
+	\includegraphics[width=0.6\textwidth]{img/ch-2-dist}
+	\caption{Wartości czujnika światła -- zmiana rozkładów}
+  \label{fig:SignalDist}
+\end{figure}
+
 
 % \begin{figure}[htbp]
 % \centering
@@ -37,7 +39,6 @@ w pewnym momencie czasu mogło nastąpić przesunięcie średniej (rys. \ref{fig
 % \end{figure}
 
 \section{Metody wykrywania zmian}
-
 Przez lata z uwagi na swoje znaczenie problem wykrywania zmian skupiał uwagę naukowców i badaczy.
 Powstało wiele metod starających się go rozwiązać.
 Większość z nich opiera się na:
@@ -47,7 +48,7 @@ Większość z nich opiera się na:
   \item analizie skupień (\textit{cluster analysis}),
   \item elementach uczenia maszynowego.
 \end{itemize}
-W dalszej częsci rozdziału zostaną omówione wartości progowe i metody analityczne
+W dalszej częsci rozdziału zostaną omówione wartości progowe i metody analityczne.
 \subsection{Wartości progowe}
 Najprostszym sposobem wykrywania sytuacji nietypowych jest ustalenie wartości progowej (\textit{threshold value}),
 której przekroczenie oznacza wystąpienie zmiany.

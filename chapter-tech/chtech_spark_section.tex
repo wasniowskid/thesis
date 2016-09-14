@@ -1,5 +1,5 @@
 \subsection{Apache Spark}
-Spark jest narzędziem ogólnego przeznaczenia umożliwiającym procesowania
+Spark jest narzędziem ogólnego przeznaczenia umożliwiającym przetwarzanie
 i analizę dużych ilości danych.
 Wykorzystywany jest z powodzeniem w operacjach związanych z:
 \begin{itemize}
@@ -12,17 +12,17 @@ Apache Spark charakteryzuje się:
   \item \textbf{Łatwością w korzystaniu}.
   Dostarczony model programistyczny skrzętnie ukrywa szczegóły implementacyjne związane z procesowaniem rozproszonym.
   Dzięki temu programista może skupić się tylko na zadaniu.
-  Dodatkowo dzięki wykorzystaniu popularnych języków (java, scala) próg wejścia jest relatywni niski,
+  Dodatkowo dzięki wykorzystaniu popularnych języków (java, scala) próg wejścia jest relatywnie niski,
   a programy wykorzystywane przez Sparka są rozumiane nawet przez osoby nie związane.
   \item \textbf{Ogólnym przeznaczeniem}.
-  Spark jest zintegrowaną platformą pozwalającą wykonywać wiele różnych prac.
+  Spark jest zintegrowaną platformą pozwalającą wykonywać wiele różnych zadań.
   Z powodzeniem można tworzyć zadania przetwarzania wsadowego,
   interaktywne analizy czy wykorzystywać mechanizmy uczenia maszynowego.
   \item \textbf{Skalowalnością}.
-  Spark dostarcza od razu mechanizmy umożliwiające skalowanie horyzontalne.
-  Wystarczy dołączyć nową maszynę do klastra.
-  Mechanizym skalowania włączone są automatycznie,
-  tzn. nie trzeba żadnych zmian w kodzie by mięć działający klaster.
+  Spark dostarcza mechanizmy umożliwiające skalowanie horyzontalne.
+  Wystarczy dołączyć nową maszynę do klastra, aby poprawić osiągi systemu..
+  Mechanizmy skalowania włączone są automatycznie,
+  tzn. nie trzeba żadnych zmian w kodzie by mieć działający klaster.
   \item \textbf{Odpornością na awarie}.
   Spark sam automatycznie zarządza wszystkimi węzłami w klastrze
   i w razie awarii jest w stanie zareagować.
@@ -31,7 +31,7 @@ Apache Spark charakteryzuje się:
 Oprócz standardowych mechanizmów Spark dostarcza zestaw dodatkowych funkcjonalności
 w wydzielonych modułach (rys. \ref{fig:SparkModules}).
 Są to operacje grafowe (GraphX), operacje SQL (Spark SQL), uczenie maszynowe (MLlib)
-i procesowanie strumieniowe (Spark Streaming).
+i przetwarzanie strumieniowe (Spark Streaming).
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.7\textwidth]{img/sparkModules}
@@ -63,9 +63,8 @@ Moduł ten zawiera wiele zaimplementowanych algorytmów między innymi do:
 i wiele innych.
 \subsubsection*{Spark Streaming}
 Moduł Spark Streaming rozszerza podstawowe funkcjonalności o przetwarzanie strumieniowe danych.
-Ponieważ pod spodem wykorzystywany jest Spark gotowe rozwiązania także charakteryzują się wysoką skalowalnością
+Ponieważ wdem wykorzystywany jest Spark gotowe rozwiązania także charakteryzują się wysoką skalowalnością
 i odpornością na awarie.
-Spark Streaming przetwarza dane poprzez buforowanie.
-Strumień dzielony jest na mini-wsady o konfigurowanym rozmiarze,
-które dalej procesowane są już normalnie.
-Na tak przygotowanych danych dostępne są już wszystkie operacje oferowane przez Sparka.
+Funkcjonalność przetwarzania strumieniowego zrealizowana jest poprzez mikro-buforowanie.
+Strumień dzielony jest na mini-wsady o konfigurowalnym rozmiarze,
+które dalej można przetwarzać za pomocą ogólnych (podstawowych) mechanizmów systemu Spark.

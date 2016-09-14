@@ -1,10 +1,10 @@
 \section{Podsumowanie}
 
-Wszystkie opisane frameworki służą do obsługi procesowania strumieniowego.
+Wszystkie opisane frameworki służą do obsługi przetwarzania strumieniowego.
 Mimo że służą do podobnych zastosowań,
 pomiędzy nimi istnieją zasadnicze różnice.
 Zarówno w obsłudze danych,
-jak i w podejściu do samego procesowania.
+jak i w podejściu do samego przetwarzania.
 
 \subsubsection*{Sposób procesowania, opóźnienia, skalowalność}
 Największą różnicą pomiędzy omawianymi platformami jest tryb w jakim procesowane są zdarzenia.
@@ -12,11 +12,11 @@ Spark buforuje (zbiera) napływające dane w zadanym interwale czasu i dopiero p
 natomiast procesuje dane bezpośrednio po ich otrzymaniu.
 Esper dzięki swoim wbudowanym mechanizmom może pracować w obydwu trybach.
 
-Różne tryby procesowania mają swoje konsekwencje w opóźnieniach (\textit{latency}).
+Różne tryby przetwarzania mają swoje konsekwencje w opóźnieniach (\textit{latency}).
 Spark z uwagi na występowanie okien czasowych ma je zauważalne,
 z kolei Storm przetwarzający dane od razu ma opóźnienia praktycznie pomijalnie małe.
 
-Sposób procesowania ma także wpływ na gwarancje jakie oferują frameworki.
+Sposób przetwarzania ma także wpływ na gwarancje jakie oferują frameworki.
 Ponieważ Spark nie musi pilnować pojedynczo danych,
 tylko mini-batche może zagwarantować,
 że dane zdarzenie przeprocesuje się dokładnie raz (\textit{exacly once}).
@@ -30,12 +30,15 @@ nie ma wbudowanych mechanizmów zarządzania klastrami,
 dlatego problem zachowania gwarancji nie istnieje.
 \begin{table}[h]
   \label{tab:ModelComparison}
-  \begin{tabular}{p{0.2\linewidth} p{0.25\linewidth} p{0.25\linewidth} p{0.25\linewidth}}
+  \begin{tabular}{p{0.2\linewidth} | p{0.25\linewidth} | p{0.25\linewidth} | p{0.25\linewidth}}
     & Esper & Spark & Storm \\
     \hline
     typ & silnik CEP & ogólny & ogólny \\
+    \hline
     model & obydwa & buforowanie & niezależne \\
+    \hline
     gwarancje & co najwyżej raz & co najwyżej raz & co najmniej raz \\
+    \hline
     skalowalność & nie & tak & tak \\
   \end{tabular}
   \caption{Porównanie platform}
@@ -52,10 +55,11 @@ Esper powstał w języku java, chociaż posiada port napisany w języku C\#.
 Do wykonywania operacji na danych wykorzystuje własny język oparty na SQL.
 \begin{table}[h]
   \label{tab:ProgrammingApi}
-  \begin{tabular}{p{0.2\linewidth} p{0.25\linewidth} p{0.25\linewidth} p{0.25\linewidth}}
+  \begin{tabular}{p{0.2\linewidth} | p{0.25\linewidth} | p{0.25\linewidth} | p{0.25\linewidth}}
     & Esper & Spark & Storm \\
     \hline
     napisany w & java & scala & clojure \\
+    \hline
     api & \textit{DSL} oparty na SQL & jvm, python, R & wiele \\
   \end{tabular}
   \caption{Porównanie platform -- API}
