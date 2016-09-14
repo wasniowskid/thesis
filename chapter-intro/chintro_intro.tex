@@ -13,21 +13,40 @@ oraz wymagania użytkowników aby wyniki otrzymywać coraz szybciej,
 najlepiej od razu,
 powodują,
 że obecne metody przetwarzania danych stają się niewystarczające.
+Wśród rozwiązań pozwalających radzić sobie w takich sytuacjach
+coraz większą popularność zyskuje przetwarzanie strumieniowe (\textit{stream analysis, data streaming}).
+
+Rozwiązania oparte na przetwarzaniu strumieniowym charakteryzują się wysoką przepustowością,
+krótkimi czasami odpowiedzi i odpornością na awarie.
+Dane mogą pochodzić z różnych źródeł: czujniki, komputery, telefony.
+Możliwe jest tworzenie i wykonywanie analiz w czasie rzeczywistym,
+dane przetwarzane są na bieżąco,
+bezpośrednio po ich otrzymaniu.
 
 Jednym z zagadnień związanych z przetwarzaniem danych jest wykrywanie zmian (sytuacji nietypowych).
 Przez lata powstało wiele prac starających się rozwiązać ten problem.
-Większość z nich oparta jest na całościowej analizie,
-tj. zestawy danych poddanych analizie są przygotowane wcześniej i nie ulegają zmianie w czasie.
-Nie są one jednak w stanie na bieżąco analizować napływających danych.
+Większość z nich oparta jest na analizie całościowej,
+tj. zestawy danych,
+które poddane są analizie,
+przygotowywane są wcześniej i nie ulegają zmianie w czasie.
+Algorytmy nie są w stanie na bieżąco analizować napływających danych.
 
-Tematem niniejszej pracy jest jeden ze sposobów wykrywania zmian,
-wykorzystujący mechanizmy statystyczne.
+Tematem niniejszej pracy jest zagadnienie wykrywania zmian w przegiegach czasowych,
+oparte na mechanizmach statystycznych.
+
 Celem pracy jest stworzenie mechanizmów wykrywających sytuacje nietypowe
 z wykorzystaniem technik analizy strumieniowej.
-W ramach pracy zostaną sprawdzone dostępne platformy streamingowe pod kątem przydatności.
-Zostaną zaimplementowane algorytmy Bayesa (\textit{Bayesian Online Changepoint Detection})
+W ramach pracy zostały sprawdzone dostępne platformy streamingowe:
+\begin{itemize}
+  \item Esper,
+  \item Apache Spark,
+  \item Apache Storm
+\end{itemize}
+pod kątem przydatności.
+Aby sprawdzić skuteczność analizy strumienowej zostały zaimplementowane algorytmy Bayesa (\textit{Bayesian Online Changepoint Detection})
 oraz ADWIN.
-Zostanie także przeprowadzona analiza skuteczności badanych algorytmów.
+Algorytmy w ramach pracy zostały zaadaptowane do wersji strumieniowych oraz przygotowane pod kątem platformy Apache Storm.
+Analiza skuteczności badanych algorytmów została przeprowadzona z wykorzytaniem danych wygenerowanych losowo jak i rzeczywistych.
 
 Układ pracy jest następujący.
 Rozdział drugi przybliża tematykę związaną z analizą strumieniową.
