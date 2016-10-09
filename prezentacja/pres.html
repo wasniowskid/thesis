@@ -1,11 +1,14 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Analiza strumieniowa w Internecie Rzeczy</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section><h1>Analiza strumieniowa w Internecie Rzeczy</h1><div class="paragraph"><p>Dominik Waśniowski</p></div>
 <div class="paragraph"><p>opiekun naukowy dr inż. Janusz Granat</p></div><p><small></small></p></section>
 <section id="_cel_pracy"><h2>Cel pracy</h2><div class="paragraph"><p>Wykrywanie sytuacji nietypowych z wykorzystaniem technik analizy strumieniowej</p></div>
-<div class="paragraph"><p>Test obecnych platform do analizy strumieniowej</p></div></section>
-<section id="_agenda"><h2>Agenda</h2><div class="ulist"><ul><li><p>Internet Rzeczy</p></li><li><p>Platformy</p></li><li><p>Sytuacje nietypowe</p></li><li><p>Co zostało</p></li></ul></div></section>
+<div class="paragraph"><p>Test obecnych platform do analizy strumieniowej</p></div>
+<div class="paragraph"><p>Dostosowanie i implementacja wybranych algorytmów z wykorzystaniem platform analizy strumieniowej</p></div></section>
+<section id="_agenda"><h2>Agenda</h2><div class="ulist"><ul><li><p>Internet Rzeczy</p></li><li><p>Platformy</p></li><li><p>Sytuacje nietypowe</p></li><li><p>Wykorzystane metody</p></li><li><p>Wyniki</p></li></ul></div></section>
 <section id="_internet_rzeczy"><h2>Internet Rzeczy</h2><div class="ulist"><ul><li><p>Miliony czujników, urządzeń podłączonych do sieci</p></li><li><p>Możliwość wcześniejszego ostrzegania o sytuacjach niebezpiecznych</p></li><li><p>Jeszcze więcej danych generowanych przez nie</p></li></ul></div></section>
-<section id="_analiza_strumieniowa"><h2>Analiza strumieniowa</h2><div class="ulist"><ul><li><p>Dane napływają na bierząco, strumieniem</p></li><li><p>Dane przetwarzane niezależnie, bezpośrenio po otrzymaniu</p></li></ul></div></section>
-<section id="_analiza_strumieniowa_2"><h2>Analiza strumieniowa</h2><div class="ulist"><div class="title">Platformy</div><ul><li><p>Esper</p></li><li><p>Apache Spark</p></li><li><p>Apache Storm</p></li></ul></div>
+<section id="_analiza_strumieniowa"><h2>Analiza strumieniowa</h2><div class="ulist"><ul><li><p>Dane napływają na bieżąco, strumieniem</p></li></ul></div>
+<div class="imageblock" style=""><div class="content"><img src="stream.svg" alt="stream"></div></div></section>
+<section id="_analiza_strumieniowa_2"><h2>Analiza strumieniowa</h2><div class="ulist"><ul><li><p>Dane przetwarzane niezależnie, bezpośrenio po otrzymaniu</p></li></ul></div></section>
+<section id="_analiza_strumieniowa_3"><h2>Analiza strumieniowa</h2><div class="ulist"><div class="title">Platformy</div><ul><li><p>Esper</p></li><li><p>Apache Spark</p></li><li><p>Apache Storm</p></li></ul></div>
 <div class="paragraph"><p>Test: wykrywanie anomalii w obszarze telokomunikacji</p></div></section>
 <section id="_esper"><h2>Esper</h2><div class="ulist"><ul><li><p>Silnik obsługi zdarzeń.</p></li><li><p>Sql podobny język.</p></li></ul></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code class="sql language-sql">select
@@ -16,7 +19,7 @@ from
 where
   cs1.callingImsi = cs2.callingImsi
   and cs1.switchNum != cs2.switchNum</code></pre></div></div></section>
-<section id="_esper_zalety"><h2>Esper - zalety</h2><div class="ulist"><ul><li><p>Prosta instalacja i użytkowanie</p></li><li><p>Ekspresyjny język</p><div class="ulist"><ul><li><p>Operacje na pojedyńczych rekordach</p></li><li><p>Filtrowanie</p></li><li><p>Agregacja</p></li><li><p>Funkcje czasowe (window-sliding)</p></li></ul></div></li></ul></div></section>
+<section id="_esper_zalety"><h2>Esper - zalety</h2><div class="ulist"><ul><li><p>Prosta instalacja i użytkowanie</p></li><li><p>Ekspresyjny język</p><div class="ulist"><ul><li><p>Operacje na pojedynczych rekordach</p></li><li><p>Filtrowanie</p></li><li><p>Agregacja</p></li><li><p>Funkcje czasowe (window-sliding)</p></li></ul></div></li></ul></div></section>
 <section id="_esper_wady"><h2>Esper - wady</h2><div class="ulist"><ul><li><p>Brak wsparcia skalowalności</p></li><li><p>Dane trzymane w pamięci</p></li></ul></div></section>
 <section id="_apache_spark"><h2>Apache Spark</h2><div class="ulist"><div class="title">Zalety</div><ul><li><p>Wsparcie skalowalności</p></li><li><p>Liczne moduły</p></li></ul></div>
 <div class="ulist"><div class="title">Wady</div><ul><li><p>Analiza strumieniowa jest pobocznym modułem</p></li><li><p>Skomplikowany sposób użytkowania</p></li></ul></div></section>
@@ -27,14 +30,19 @@ where
 <section id="_sytuacje_nietypowe"><h2>Sytuacje nietypowe</h2><div class="ulist"><ul><li><p>Zmiana charakterystyki</p><div class="ulist"><ul><li><p>Chwilowe</p></li><li><p>Permanentne</p></li></ul></div></li><li><p>Wartości odstające (outliers)</p></li><li><p>Inne</p></li></ul></div></section>
 <section id="_wykrywanie_zmian"><h2>Wykrywanie zmian</h2><div class="ulist"><ul><li><p>Wykrywanie zmian charakterystyk w czasie</p></li><li><p>Zmiany parametrów definiujących rozkład</p></li></ul></div>
 <div class="imageblock" style=""><div class="content"><img src="test.png" alt="test"></div></div></section>
-<section id="_wykrywanie_zmian_2"><h2>Wykrywanie zmian</h2><div class="paragraph"><p>Wykrywanie zmian z pomocą prawdopobieństwa Bayesa
+<section id="_wykrywanie_zmian_2"><h2>Wykrywanie zmian</h2><div class="ulist"><ul><li><p>algorytm Bayesa</p></li><li><p>algorytm ADWIN</p><div class="ulist"><ul><li><p>test średniej</p></li><li><p>test stosunku funkcji gęstości rozkładów</p></li></ul></div></li></ul></div></section>
+<section id="_wykrywanie_zmian_3"><h2>Wykrywanie zmian</h2><div class="paragraph"><p>Wykrywanie zmian z pomocą prawdopobieństwa Bayesa
 ang. Bayesian online change point detection</p></div>
 <div class="ulist"><ul><li><p>Możliwość wykorzystania dla różnych typów danych wejściowych</p></li><li><p>Konieczność pamiętania wartości wyłącznie od ostatniej zmiany</p></li></ul></div></section>
-<section id="_algorytm_bayesa"><h2>Algorytm Bayesa</h2><div class="ulist"><ul><li><p>Przebiegi, dane zebrane od teraz do poprzedniej zmiany</p></li><li><p>Znamy wcześniejszy rozkład próbek</p></li><li><p>Nowa wartość należy do akualnego przebiegu, bądź nastąpiła zmiana</p></li></ul></div></section>
-<section id="_funkcja_przebiegu_w_czasie"><h2>Funkcja przebiegu w czasie</h2><div class="imageblock" style=""><div class="content"><img src="run.png" alt="run"></div></div></section>
-<section id="_przykład_dane_wejściowe"><h2>Przykład - dane wejściowe</h2><div class="imageblock" style=""><div class="content"><img src="before.png" alt="before"></div></div></section>
-<section id="_wynik"><h2>Wynik</h2><div class="imageblock" style=""><div class="content"><img src="after.png" alt="after"></div></div></section>
-<section id="_co_zostało"><h2>Co zostało</h2><div class="ulist"><ul><li><p>Opracowanie własnej metody wykrywania sytuacji nietypowej</p></li><li><p>Testy</p></li></ul></div></section>
+<section id="_wykrywanie_zmian_4"><h2>Wykrywanie zmian</h2><div class="paragraph"><p>algorytm ADWIN</p></div>
+<div class="ulist"><ul><li><p>przesuwne okno</p></li><li><p>brak parametrów</p></li></ul></div></section>
+<section id="_wykrywanie_zmian_5"><h2>Wykrywanie zmian</h2><div class="paragraph"><p>algorytm ADWIN - testy</p></div>
+<div class="ulist"><ul><li><p>test średniej</p></li><li><p>test stosunku funkcji gęstości rozkładów</p></li></ul></div></section>
+<section id="_wyniki"><h2>Wyniki</h2><div class="paragraph"><p>Rozkład jednowymiarowy, skacząca średnia</p></div>
+<div class="imageblock" style=""><div class="content"><img src="ch-5-jumping.jpg" alt="ch 5 jumping"></div></div></section>
+<section id="_wyniki_2"><h2>Wyniki</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"></td><td class="tableblock halign-left valign-top"><p class="tableblock">Skuteczność</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Bayes</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">43 %</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">ADWIN średnia</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">52 %</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">ADWIN gęstość</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">53 %</p></td></tr></tbody></table></section>
+<section id="_wyniki_3"><h2>Wyniki</h2><div class="paragraph"><p>Rozkład dwuwymiarowy</p></div>
+<table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"></td><td class="tableblock halign-left valign-top"><p class="tableblock">Skuteczność</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Bayes</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">19 %</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">ADWIN gęstość</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">36 %</p></td></tr></tbody></table></section>
 <section id="_dziękuje_za_uwagę"><h2>Dziękuje za uwagę</h2></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner

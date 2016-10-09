@@ -14,13 +14,16 @@ Wykrywanie sytuacji nietypowych z wykorzystaniem technik analizy strumieniowej
 
 Test obecnych platform do analizy strumieniowej
 
+Dostosowanie i implementacja wybranych algorytmów z wykorzystaniem platform analizy strumieniowej
+
 
 == Agenda
 
 * Internet Rzeczy
 * Platformy
 * Sytuacje nietypowe
-* Co zostało
+* Wykorzystane metody
+* Wyniki
 
 == Internet Rzeczy
 
@@ -30,7 +33,12 @@ Test obecnych platform do analizy strumieniowej
 
 == Analiza strumieniowa
 
-* Dane napływają na bierząco, strumieniem
+* Dane napływają na bieżąco, strumieniem
+
+image::stream.svg[]
+
+== Analiza strumieniowa
+
 * Dane przetwarzane niezależnie, bezpośrenio po otrzymaniu
 
 == Analiza strumieniowa
@@ -118,33 +126,56 @@ image::test.png[]
 
 == Wykrywanie zmian
 
+* algorytm Bayesa
+* algorytm ADWIN
+** test średniej
+** test stosunku funkcji gęstości rozkładów
+
+== Wykrywanie zmian
+
 Wykrywanie zmian z pomocą prawdopobieństwa Bayesa
 ang. Bayesian online change point detection
 
 * Możliwość wykorzystania dla różnych typów danych wejściowych
 * Konieczność pamiętania wartości wyłącznie od ostatniej zmiany
 
-== Algorytm Bayesa
+== Wykrywanie zmian
 
-* Przebiegi, dane zebrane od teraz do poprzedniej zmiany
-* Znamy wcześniejszy rozkład próbek
-* Nowa wartość należy do akualnego przebiegu, bądź nastąpiła zmiana
+algorytm ADWIN
 
-== Funkcja przebiegu w czasie
+* przesuwne okno
+* brak parametrów
 
-image::run.png[]
+== Wykrywanie zmian
 
-== Przykład - dane wejściowe
+algorytm ADWIN - testy
 
-image::before.png[]
+* test średniej
+* test stosunku funkcji gęstości rozkładów
 
-== Wynik
+== Wyniki
 
-image::after.png[]
+Rozkład jednowymiarowy, skacząca średnia
 
-== Co zostało
+image::ch-5-jumping.jpg[]
 
-* Opracowanie własnej metody wykrywania sytuacji nietypowej
-* Testy
+== Wyniki
+
+|===
+||Skuteczność
+|Bayes | 43 %
+|ADWIN średnia |  52 %
+|ADWIN gęstość |  53 %
+|===
+
+== Wyniki
+
+Rozkład dwuwymiarowy
+
+|===
+||Skuteczność
+|Bayes | 19 %
+|ADWIN gęstość |  36 %
+|===
 
 == Dziękuje za uwagę
